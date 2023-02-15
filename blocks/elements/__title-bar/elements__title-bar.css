@@ -1,4 +1,4 @@
-.elements__item_title-bar {
+.elements__title-bar {
   max-width: calc(100% - (15px + 21px));
   height: 29px;
   display: flex;

@@ -1,4 +1,4 @@
-.elements__item_footer {
+.elements__footer {
   width: 100%;
   height: calc(361px - 282px);   /* 79px */
   background-color: #fff;
@@ -7,7 +7,7 @@
 }
 
 @media screen and (max-width:641px) {
-  .elements__item_footer {
+  .elements__footer {
     padding-top: 24px;
   }
 }
