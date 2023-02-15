@@ -1,0 +1,10 @@
+.page {
+  max-width: 1280px;
+  min-width: 320px;
+  margin: 0 auto;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+/* *,*::before,*::after {outline: 1px solid red} */

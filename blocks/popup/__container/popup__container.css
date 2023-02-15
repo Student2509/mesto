@@ -1,0 +1,22 @@
+.popup__container {
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+  z-index: 20;
+}
+
+@media screen and (max-width:641px) {
+  .popup__container {
+    width: 282px;
+  }
+}
+
+/* @media screen and (max-width:319px) {
+  .popup__container {
+    width: 100%;
+  }
+} */

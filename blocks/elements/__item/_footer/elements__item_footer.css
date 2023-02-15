@@ -1,0 +1,13 @@
+.elements__item_footer {
+  width: 100%;
+  height: calc(361px - 282px);   /* 79px */
+  background-color: #fff;
+  box-sizing: border-box;
+  padding-top: 25px;
+}
+
+@media screen and (max-width:641px) {
+  .elements__item_footer {
+    padding-top: 24px;
+  }
+}

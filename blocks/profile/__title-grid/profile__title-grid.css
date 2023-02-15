@@ -1,0 +1,10 @@
+.profile__title-grid {
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width:641px) {
+  .profile__title-grid {
+    flex-direction: column;
+  }
+}

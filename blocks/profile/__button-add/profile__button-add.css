@@ -1,0 +1,29 @@
+.profile__button-add {
+  width: 150px;
+  height: 50px;
+  align-self: center;
+  padding: 0;
+  background-image: url(../../../images/profile-button-add.png);
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: 2px solid #fff;
+}
+
+@media screen and (max-width:980px) {
+  .profile__button-add {
+    width: 100px;
+    background-image: url(../../../images/profile-button-add-mobile.png);
+  }
+}
+
+@media screen and (max-width:641px) {
+  .profile__button-add {
+    width: 282px;
+    margin: 32px auto 0; /* на макете margin-top: 36px, но это расстояние между блоком button-add и базовой линией блока profile__subtitle
+    для соответствия макету в данном случае уменьшаем margin-top до 32px из-за зазора между нижней границей блока profile__subtitle  
+    и базовой линией текста в 4px */
+    background-image: url(../../../images/profile-button-add-mobile.png);
+  }
+}

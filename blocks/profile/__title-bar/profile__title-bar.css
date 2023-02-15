@@ -1,0 +1,12 @@
+.profile__title-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16px;
+}
+
+@media screen and (max-width:641px) {
+  .profile__title-bar {
+    margin-bottom: 8px;
+  }
+}

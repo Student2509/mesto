@@ -1,0 +1,14 @@
+.popup__container_edit-field {
+  max-width: calc(100% - 2*36px);
+  width: 100%;
+  min-height: 27px;
+  margin: 30px 36px 0;
+  /* border-bottom: 1px solid #000; */
+}
+
+@media screen and (max-width:641px) {
+  .popup__container_edit-field {
+    max-width: calc(100% - 2*22px);
+    margin: 30px 22px 0;
+  }
+}

@@ -1,0 +1,22 @@
+.popup__container_edit-line {
+  width: 100%;
+  /* margin: 0 0 13px 0; */
+  margin: 0;
+  padding: 8px 0 13px 4px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #000;
+}
+
+.popup__container_edit-line:hover {
+  cursor: text;
+}
+.popup__container_edit-line:focus {
+  padding: 6px 0 12px 2px;
+  border: 2px solid #87CEEB;
+  border-radius: 2px;
+}

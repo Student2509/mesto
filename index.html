@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Forth project of Yury Baranov / Yandex.Practicum">
+  <meta name="keywords" content="html, css, adaptive, grid, figma, JavaScript">
+  <meta name="author" content="Yury Baranov">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Место</title>
+</head>
+<body class="root">
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/header-logo.svg" alt="Логотип: Место - Россия">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__title-grid">
+          <img class="profile__avatar" src="./images/profile-cousteau.svg" alt="Изображение: Жак-Ив Кусто">
+
+
+
+          <div class="profile__info">
+            <div class="profile__title-bar">
+              <h1 class="profile__title">Жак-Ив Кусто</h1> <!-- <div class="profile__title-aligner"></div> -->
+              <input class="profile__button-edit button" type="button">
+            </div>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
+
+
+          
+        </div>
+        <input class="profile__button-add button" type="button">
+      </section>
+      <section class="elements">
+        <div class="elements__item">
+          <img class="elements__item_picture" src="./images/elements-karachaevsk.jpg" alt="Изображение: Карачаевск">
+          <div class="elements__item_footer">
+            <div class="elements__item_title-bar">
+              <h2 class="elements__item_title">Карачаевск<div class="elements__item_title-aligner"></div></h2>
+              <!-- <img class="elements__item_like button" src="./images/elements-like.svg" alt="Значок Лайк"> -->
+              <div class="elements__item_like button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="elements__item">
+          <img class="elements__item_picture" src="./images/elements-mountain.jpg" alt="Изображение: Гора Эльбрус">
+          <div class="elements__item_footer">
+            <div class="elements__item_title-bar">
+              <h2 class="elements__item_title">Гора Эльбрус<div class="elements__item_title-aligner"></div></h2>
+              <!-- <img class="elements__item_like button" src="./images/elements-like.svg" alt="Значок Лайк"> -->
+              <div class="elements__item_like button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="elements__item">
+          <img class="elements__item_picture" src="./images/elements-dombai.jpg" alt="Изображение: Домбай">
+          <div class="elements__item_footer">
+            <div class="elements__item_title-bar">
+              <h2 class="elements__item_title">Домбай<div class="elements__item_title-aligner"></div></h2>
+              <!-- <img class="elements__item_like button" src="./images/elements-like.svg" alt="Значок Лайк"> -->
+              <div class="elements__item_like button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="elements__item">
+          <img class="elements__item_picture" src="./images/elements-mountain.jpg" alt="Изображение: Гора Эльбрус">
+          <div class="elements__item_footer">
+            <div class="elements__item_title-bar">
+              <h2 class="elements__item_title">Гора Эльбрус<div class="elements__item_title-aligner"></div></h2>
+              <!-- <img class="elements__item_like button" src="./images/elements-like.svg" alt="Значок Лайк"> -->
+              <div class="elements__item_like button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="elements__item">
+          <img class="elements__item_picture" src="./images/elements-dombai.jpg" alt="Изображение: Домбай">
+          <div class="elements__item_footer">
+            <div class="elements__item_title-bar">
+              <h2 class="elements__item_title">Домбай<div class="elements__item_title-aligner"></div></h2>
+              <!-- <img class="elements__item_like button" src="./images/elements-like.svg" alt="Значок Лайк"> -->
+              <div class="elements__item_like button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="elements__item">
+          <img class="elements__item_picture" src="./images/elements-karachaevsk.jpg" alt="Изображение: Карачаево-Черкессия">
+          <div class="elements__item_footer">
+            <div class="elements__item_title-bar">
+              <h2 class="elements__item_title">Карачаево-Черкессия<div class="elements__item_title-aligner"></div></h2>
+              <!-- <img class="elements__item_like button" src="./images/elements-like.svg" alt="Значок Лайк"> -->
+              <div class="elements__item_like button"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="popup">
+        <div class="popup__container">
+          <p class="popup__container_title">Редактировать профиль</p>
+          <div class="popup__container_edit-field">
+            <input class="popup__container_edit-line" type="text" value=""> <!-- value="Жак-Ив Кусто" -->
+          </div>
+          <div class="popup__container_edit-field">
+            <input class="popup__container_edit-line" type="text" value=""> <!-- value="Исследователь океана" -->
+          </div>
+          <input class="popup__container_button-save button" type="submit" value="Сохранить">
+          <div class="popup__button-close button"></div>
+        </div>
+        <div class="popup__overlay"></div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2023. Mesto Russia by Yury B.</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

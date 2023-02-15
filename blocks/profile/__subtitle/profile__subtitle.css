@@ -1,0 +1,28 @@
+.profile__subtitle {
+  margin: 3px 0 0 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1ex;
+  /* line-height: 22px; */
+}
+
+@media screen and (max-width:980px) {
+  .profile__subtitle {
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+@media screen and (max-width:641px) {
+  .profile__subtitle {
+    font-size: 14px;
+    padding: calc(14px - 1ex - 1px) 0 0 0;
+    /* на макете текст располагается центрировано относительно ширина блока profile__title (без учёта кнопки, 28px с отступом) */
+    /* высчитываем margin и width исходя из этого условия */
+    /* max-width = (100% - 28px) */
+    width: calc(100% - 28px);
+    /* margin-left = margin-right = (100% - width) / 2 */
+    margin: 0 auto 0 calc((100% - calc(100% - 28px))/2 + 2px);
+  }
+}

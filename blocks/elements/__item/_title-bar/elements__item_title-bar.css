@@ -1,0 +1,9 @@
+.elements__item_title-bar {
+  max-width: calc(100% - (15px + 21px));
+  height: 29px;
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-end;
+  /* padding-top: calc(calc(79px - 29px)*25/(25 + 31)); */
+  margin: 0 15px 0 21px;
+}
