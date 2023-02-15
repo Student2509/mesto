@@ -1,4 +1,4 @@
-.popup__container_edit-line {
+.popup__edit-line {
   width: 100%;
   /* margin: 0 0 13px 0; */
   margin: 0;
@@ -12,10 +12,10 @@
   border-bottom: 1px solid #000;
 }
 
-.popup__container_edit-line:hover {
+.popup__edit-line:hover {
   cursor: text;
 }
-.popup__container_edit-line:focus {
+.popup__edit-line:focus {
   padding: 6px 0 12px 2px;
   border: 2px solid #87CEEB;
   border-radius: 2px;

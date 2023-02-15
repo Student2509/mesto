@@ -1,4 +1,4 @@
-.popup__container_button-save {
+.popup__button-save {
   max-width: calc(100% - 2*36px);
   height: 50px;
   width: 100%;
@@ -15,7 +15,7 @@
 }
 
 @media screen and (max-width:641px) {
-  .popup__container_button-save {
+  .popup__button-save {
     max-width: calc(100% - 2*22px);
     height: 46px;
     margin: 45px 22px 25px;
