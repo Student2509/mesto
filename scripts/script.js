@@ -8,25 +8,6 @@ let jobInput = formElementFields[1];
 let nameOutput = document.querySelector('.content .profile .profile__title-grid .profile__info .profile__title-bar .profile__title');
 let jobOutput = document.querySelector('.content .profile .profile__title-grid .profile__info .profile__subtitle');
 
-// function handleFormSubmit (evt) {
-//     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-//                                                 // Так мы можем определить свою логику отправки.
-//                                                 // О том, как это делать, расскажем позже.
-    
-//     // Получите значение полей jobInput и nameInput из свойства value
-//     let name = nameInput.value;
-//     let job = jobInput.value;
-//     // Выберите элементы, куда должны быть вставлены значения полей
-
-//     // Вставьте новые значения с помощью textContent
-//     nameOutput.textContent = name;
-//     jobOutput.textContent = job;
-// }
-
-// // Прикрепляем обработчик к форме:
-// // он будет следить за событием “submit” - «отправка»
-// formElement.addEventListener('submit', handleFormSubmit); 
-
 function popupSwitcher () {
   let popup = document.querySelector('.content .popup');
   popup.classList.toggle('popup_opened');
@@ -59,3 +40,23 @@ let buttonSave = formElement.querySelector('.popup__button-save');
 buttonEdit.addEventListener('click', handleEditButton);
 buttonClose.addEventListener('click', handleCloseButton);
 buttonSave.addEventListener('click', handleSaveButton);
+
+function handleFormSubmit (evt) {
+    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+                                                // Так мы можем определить свою логику отправки.
+                                                // О том, как это делать, расскажем позже.
+    
+    // Получите значение полей jobInput и nameInput из свойства value
+    let name = nameInput.value;
+    let job = jobInput.value;
+    // Выберите элементы, куда должны быть вставлены значения полей
+
+    // Вставьте новые значения с помощью textContent
+    nameOutput.textContent = name;
+    jobOutput.textContent = job;
+    popupSwitcher();
+}
+
+// Прикрепляем обработчик к форме:
+// он будет следить за событием “submit” - «отправка»
+formElement.addEventListener('submit', handleFormSubmit);

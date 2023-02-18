@@ -8,5 +8,6 @@
 @media screen and (max-width:641px) {
   .profile__title-bar {
     margin-bottom: 8px;
+    justify-content: space-between;
   }
 }

@@ -4,6 +4,7 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 1ex;
+  max-width: calc(100% - (24px + 18px)); /* profile__button-edit + margin-left  */
 }
 
 @media screen and (max-width:980px) {
@@ -18,5 +19,7 @@
     /* воссоздаём line-height как на макете */
     padding-top: calc(27px - 1ex - 2px);
     text-align: center;
+    max-width: 100%;
+    /* min-width: 70%; */
   }
 }

@@ -1,7 +1,7 @@
 .profile__button-edit {
   width: 24px;
   height: 24px;
-  align-self: flex-end;
+  align-self: center;
   padding: 0;
   background-image: url(../../../images/profile-button-edit.png);
   background-repeat: no-repeat;
@@ -16,5 +16,6 @@
     width: 18px;
     height: 18px;
     margin-left: 10px;
+    align-self: flex-end;
   }
 }

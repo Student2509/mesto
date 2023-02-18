@@ -5,9 +5,11 @@
   width: 32px;
   height: 32px;
   background-image: url(../../../images/popup-container-close.svg);
+  background-color: rgba(0, 0, 0, 0);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  border: none;
 }
 
 @media screen and (max-width:641px) {

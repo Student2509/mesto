@@ -4,6 +4,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1ex;
+  max-width: calc(100% - (24px + 18px)); /* profile__button-edit + margin-left  */
   /* line-height: 22px; */
 }
 
