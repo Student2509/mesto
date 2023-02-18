@@ -5,8 +5,8 @@ let formElementFields = formElement.querySelectorAll('.popup__edit-field .popup_
 let nameInput = formElementFields[0];
 let jobInput = formElementFields[1];
 
-let nameOutput = document.querySelector('.content .profile .profile__title-grid .profile__info .profile__title-bar .profile__title');
-let jobOutput = document.querySelector('.content .profile .profile__title-grid .profile__info .profile__subtitle');
+let nameOutput = document.querySelector('.content .profile .profile__title-grid .profile__grid .profile__title');
+let jobOutput = document.querySelector('.content .profile .profile__title-grid .profile__grid .profile__subtitle');
 
 function popupSwitcher () {
   let popup = document.querySelector('.content .popup');
@@ -33,7 +33,7 @@ function handleSaveButton () {
   popupSwitcher();
 }
 
-let buttonEdit = document.querySelector('.content .profile .profile__title-grid .profile__info .profile__title-bar .profile__button-edit');
+let buttonEdit = document.querySelector('.content .profile .profile__title-grid .profile__grid .profile__button-edit');
 let buttonClose = formElement.querySelector('.popup__button-close');
 let buttonSave = formElement.querySelector('.popup__button-save');
 

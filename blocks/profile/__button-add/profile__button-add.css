@@ -22,7 +22,7 @@
 @media screen and (max-width:641px) {
   .profile__button-add {
     width: 282px;
-    margin: 32px auto 0; /* на макете margin-top: 36px, но это расстояние между блоком button-add и базовой линией блока profile__subtitle
+    margin: 24px auto 0; /* на макете margin-top: 36px, но это расстояние между блоком button-add и базовой линией блока profile__subtitle
     для соответствия макету в данном случае уменьшаем margin-top до 32px из-за зазора между нижней границей блока profile__subtitle  
     и базовой линией текста в 4px */
     background-image: url(../../../images/profile-button-add-mobile.png);

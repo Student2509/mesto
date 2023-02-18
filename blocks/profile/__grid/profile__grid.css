@@ -1,0 +1,19 @@
+.profile__grid {
+  display: grid;
+  grid-template-columns: minmax(min-content, max-content) fit-content; /* 42px = 18px + 24px */
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+  "title button-edit"
+  "subtitle .";
+  gap: 1px;
+  max-width: 100%;
+  margin: 16px 0 0 30px;
+}
+
+@media screen and (max-width:641px) {
+  .profile__grid {
+    max-width: 282px;
+    margin: 26px 19px 0 auto;
+    padding: 0;
+  }
+}
