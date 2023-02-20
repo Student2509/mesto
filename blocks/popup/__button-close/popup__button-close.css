@@ -1,15 +1,16 @@
 .popup__button-close {
   position: absolute;
-  top: -32px;
-  right: -32px;
+  top: -40px;
+  right: -40px;
   width: 32px;
   height: 32px;
-  background-image: url(../../../images/popup-container-close.svg);
+  background-image: url(../../../images/popup-button-close.svg);
   background-color: rgba(0, 0, 0, 0);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   border: none;
+  padding: 0;
 }
 
 @media screen and (max-width:641px) {
@@ -18,6 +19,6 @@
     right: 0;
     width: 20px;
     height: 20px;
-    background-image: url(../../../images/popup-container-close-mobile.svg);
+    background-image: url(../../../images/popup-button-close-mobile.svg);
   }
 }

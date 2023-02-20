@@ -4,26 +4,14 @@
   height: 24px;
   align-self: flex-end;
   padding: 0;
-  background-image: url(../../../images/profile-button-edit.png);
+  background-image: url(../../../images/profile-button-edit.svg);
+  background-color: rgba(0, 0, 0, 0);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: 10px 10px;
   border: 1px solid #fff;
   margin: auto auto 8px 18px;
 }
-
-/* .profile__button-edit {
-  width: 24px;
-  height: 24px;
-  align-self: center;
-  padding: 0;
-  background-image: url(../../../images/profile-button-edit.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  border: 1px solid #fff;
-  margin-left: 18px;
-} */
 
 @media screen and (max-width:641px) {
   .profile__button-edit {
@@ -31,5 +19,6 @@
     height: 18px;
     margin-left: 10px;
     align-self: flex-end;
+    background-size: 7.5px 7.5px;
   }
 }

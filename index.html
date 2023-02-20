@@ -15,114 +15,74 @@
       <img class="header__logo" src="./images/header-logo.svg" alt="Логотип: Место - Россия">
     </header>
     <main class="content">
-      <!-- <section class="profile">
-        <div class="profile__title-grid">
-          <img class="profile__avatar" src="./images/profile-cousteau.svg" alt="Изображение: Жак-Ив Кусто">
-          <div class="profile__info">
-            <div class="profile__title-bar">
-              <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button class="profile__button-edit button" type="button" value="&#160;"></button>-->
-              <!-- value="&#160; -->
-              <!-- https://stackoverflow.com/questions/16273319/error-element-input-with-attribute-type-whose-value-is-button-must-have-non-em -->
-            <!-- </div>
-            <p class="profile__subtitle">Исследователь океана</p>
-          </div>
-        </div>
-        <button class="profile__button-add button" type="button" value="&#160;"></button>
-      </section> -->
-
       <section class="profile">
         <div class="profile__title-grid">
-          <img class="profile__avatar" src="./images/profile-cousteau.svg" alt="Изображение: Жак-Ив Кусто">
+          <img class="profile__avatar" src="./images/profile-cousteau.svg" alt="Изображение: Аватар">
           <div class="profile__grid">
-
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__button-edit button" type="button" value="&#160;"></button>
+            <button class="profile__button-edit button" type="button" value="&#160;" aria-label="Редактировать"></button>
             <p class="profile__subtitle">Исследователь океана</p>
-
           </div>
         </div>
-        <button class="profile__button-add button" type="button" value="&#160;"></button>
+        <button class="profile__button-add button" type="button" value="&#160;" aria-label="Добавить"></button>
       </section>
-
-
-
       <section class="elements">
         <div class="elements__item">
           <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение: Карачаевск">
-          <div class="elements__footer">
-            <div class="elements__title-bar">
-              <h2 class="elements__title">Карачаевск<!--<div class="elements__title-aligner"></div>--></h2>
-              <button class="elements__like button" type="button" value="&#160;"></button>
-            </div>
+          <div class="elements__title-bar">
+            <h2 class="elements__title">Карачаевск</h2>
+            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
           </div>
         </div>
         <div class="elements__item">
           <img class="elements__picture" src="./images/elements-mountain.jpg" alt="Изображение: Гора Эльбрус">
-          <div class="elements__footer">
-            <div class="elements__title-bar">
-              <h2 class="elements__title">Гора Эльбрус<!--<div class="elements__title-aligner"></div>--></h2>
-              <button class="elements__like button" type="button" value="&#160;"></button>
-            </div>
+          <div class="elements__title-bar">
+            <h2 class="elements__title">Гора Эльбрус</h2>
+            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
           </div>
         </div>
         <div class="elements__item">
           <img class="elements__picture" src="./images/elements-dombai.jpg" alt="Изображение: Домбай">
-          <div class="elements__footer">
-            <div class="elements__title-bar">
-              <h2 class="elements__title">Домбай<!--<div class="elements__title-aligner"></div>--></h2>
-              <button class="elements__like button" type="button" value="&#160;"></button>
-            </div>
+          <div class="elements__title-bar">
+            <h2 class="elements__title">Домбай</h2>
+            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
           </div>
         </div>
         <div class="elements__item">
           <img class="elements__picture" src="./images/elements-mountain.jpg" alt="Изображение: Гора Эльбрус">
-          <div class="elements__footer">
-            <div class="elements__title-bar">
-              <h2 class="elements__title">Гора Эльбрус<!--<div class="elements__title-aligner"></div>--></h2>
-              <button class="elements__like button" type="button" value="&#160;"></button>
-            </div>
+          <div class="elements__title-bar">
+            <h2 class="elements__title">Гора Эльбрус</h2>
+            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
           </div>
         </div>
         <div class="elements__item">
           <img class="elements__picture" src="./images/elements-dombai.jpg" alt="Изображение: Домбай">
-          <div class="elements__footer">
-            <div class="elements__title-bar">
-              <h2 class="elements__title">Домбай<!--<div class="elements__title-aligner"></div>--></h2>
-              <button class="elements__like button" type="button" value="&#160;"></button>
-            </div>
+          <div class="elements__title-bar">
+            <h2 class="elements__title">Домбай</h2>
+            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
           </div>
         </div>
         <div class="elements__item">
           <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение: Карачаево-Черкессия">
-          <div class="elements__footer">
-            <div class="elements__title-bar">
-              <h2 class="elements__title">Карачаево-Черкессия<!--<div class="elements__title-aligner"></div>--></h2>
-              <button class="elements__like button" type="button" value="&#160;"></button>
-            </div>
+          <div class="elements__title-bar">
+            <h2 class="elements__title">Карачаево-Черкессия</h2>
+            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
           </div>
         </div>
-      </section>
-      <section class="popup">
-        <div class="popup__container">
-          <h3 class="popup__title">Редактировать профиль</h3>
-          <div class="popup__edit-field">
-            <input class="popup__edit-line" type="text" value=""> <!-- value="Жак-Ив Кусто" -->
-          </div>
-          <div class="popup__edit-field">
-            <input class="popup__edit-line" type="text" value=""> <!-- value="Исследователь океана" -->
-          </div>
-          <!-- <input class="popup__button-save button" type="submit" value="Сохранить"> -->
-          <button class="popup__button-save button" type="submit" value="Сохранить">Сохранить</button>
-          <!-- <div class="popup__button-close button"></div> -->
-          <button class="popup__button-close button" type="button" value="&#160;"></button>
-        </div>
-        <!-- <div class="popup__overlay"></div> -->
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023. Mesto Russia by Yury B.</p>
     </footer>
+    <div class="popup">
+      <form class="popup__container" name="edit-form" autocomplete="off">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <input class="popup__edit-line popup__edit-line_field_name" type="text" name="name" value="&#160;">
+        <input class="popup__edit-line popup__edit-line_field_description" type="text" name="description" value="&#160;">
+        <button class="popup__button-save button" type="submit" value="Сохранить" aria-label="Сохранить">Сохранить</button>
+        <button class="popup__button-close button" type="button" value="&#160;" aria-label="Закрыть"></button>
+      </form>
+    </div>
   </div>
   <script src="scripts/script.js"></script>
 </body>

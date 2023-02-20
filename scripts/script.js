@@ -1,45 +1,23 @@
-let formElement = document.querySelector('.content .popup .popup__container');
+let popup = document.querySelector('.popup');
+let formElement = document.querySelector('.popup__container');
+let buttonEdit = document.querySelector('.profile__button-edit');
+let buttonClose = document.querySelector('.popup__button-close');
 
-let formElementFields = formElement.querySelectorAll('.popup__edit-field .popup__edit-line');
+let nameInput = formElement.querySelector('.popup__edit-line_field_name');
+let jobInput = formElement.querySelector('.popup__edit-line_field_description');
 
-let nameInput = formElementFields[0];
-let jobInput = formElementFields[1];
+let nameOutput = document.querySelector('.profile__title');
+let jobOutput = document.querySelector('.profile__subtitle');
 
-let nameOutput = document.querySelector('.content .profile .profile__title-grid .profile__grid .profile__title');
-let jobOutput = document.querySelector('.content .profile .profile__title-grid .profile__grid .profile__subtitle');
-
-function popupSwitcher () {
-  let popup = document.querySelector('.content .popup');
-  popup.classList.toggle('popup_opened');
-}
-  
-function setDefaultForm () {
+function openPopup () {
   nameInput.value = nameOutput.textContent;
   jobInput.value = jobOutput.textContent;
+  popup.classList.add('popup_opened');
 }
 
-function handleEditButton () {  
-  setDefaultForm();
-  popupSwitcher();
+function closePopup () {
+  popup.classList.remove('popup_opened');
 }
-
-function handleCloseButton () {
-  popupSwitcher();
-}
-
-function handleSaveButton () {
-  nameOutput.textContent = nameInput.value;
-  jobOutput.textContent = jobInput.value;
-  popupSwitcher();
-}
-
-let buttonEdit = document.querySelector('.content .profile .profile__title-grid .profile__grid .profile__button-edit');
-let buttonClose = formElement.querySelector('.popup__button-close');
-let buttonSave = formElement.querySelector('.popup__button-save');
-
-buttonEdit.addEventListener('click', handleEditButton);
-buttonClose.addEventListener('click', handleCloseButton);
-buttonSave.addEventListener('click', handleSaveButton);
 
 function handleFormSubmit (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
@@ -47,16 +25,17 @@ function handleFormSubmit (evt) {
                                                 // О том, как это делать, расскажем позже.
     
     // Получите значение полей jobInput и nameInput из свойства value
-    let name = nameInput.value;
-    let job = jobInput.value;
+    //      nameInput и jobInput заданы выше
     // Выберите элементы, куда должны быть вставлены значения полей
 
     // Вставьте новые значения с помощью textContent
-    nameOutput.textContent = name;
-    jobOutput.textContent = job;
-    popupSwitcher();
+    nameOutput.textContent = nameInput.value;
+    jobOutput.textContent = jobInput.value;
+    closePopup();
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', handleFormSubmit);
+buttonEdit.addEventListener('click', openPopup);
+buttonClose.addEventListener('click', closePopup);

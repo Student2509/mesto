@@ -1,22 +1,39 @@
 .popup__edit-line {
   width: 100%;
-  /* margin: 0 0 13px 0; */
-  margin: 0;
-  padding: 8px 0 13px 4px;
+  max-width: calc(100% - 2*36px);
+  margin: 30px 0 0;
+  padding: 18px 0 9px 4px;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #000;
   outline: none;
   border: none;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 
 .popup__edit-line:hover {
   cursor: text;
 }
 .popup__edit-line:focus {
-  padding: 6px 0 12px 2px;
+  padding: 15px 0 9px 3px;
   border: 2px solid #87CEEB;
   border-radius: 2px;
+}
+
+.popup__edit-line:last-of-type {
+  margin-top: 14px;
+}
+
+@media screen and (max-width:641px) {
+  .popup__edit-line {
+    /* margin-top: 12px; */
+    max-width: calc(100% - 2*22px);
+    margin: 12px 22px 0 22px;
+    padding: 18px 0 9px 0;
+  }
+
+  .popup__edit-line:last-of-type {
+    padding-top: 16px;
+  }
 }
