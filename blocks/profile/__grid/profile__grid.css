@@ -1,6 +1,6 @@
 .profile__grid {
   display: grid;
-  grid-template-columns: minmax(min-content, max-content) fit-content; /* 42px = 18px + 24px */
+  grid-template-columns: minmax(min-content, max-content) minmax(42px, fit-content); /* 42px = 18px + 24px */
   grid-template-rows: repeat(2, 1fr);
   grid-template-areas:
   "title button-edit"

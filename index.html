@@ -75,13 +75,15 @@
       <p class="footer__copyright">&copy; 2023. Mesto Russia by Yury B.</p>
     </footer>
     <div class="popup">
-      <form class="popup__container" name="edit-form" autocomplete="off">
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <input class="popup__edit-line popup__edit-line_field_name" type="text" name="name" value="&#160;">
-        <input class="popup__edit-line popup__edit-line_field_description" type="text" name="description" value="&#160;">
-        <button class="popup__button-save button" type="submit" value="Сохранить" aria-label="Сохранить">Сохранить</button>
-        <button class="popup__button-close button" type="button" value="&#160;" aria-label="Закрыть"></button>
-      </form>
+      <div class="popup__container">
+        <form class="popup__form" name="edit-form" autocomplete="off">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <input class="popup__edit-line popup__edit-line_field_name" type="text" name="name" value="&#160;">
+          <input class="popup__edit-line popup__edit-line_field_description" type="text" name="description" value="&#160;">
+          <button class="popup__button-save button" type="submit" value="Сохранить" aria-label="Сохранить">Сохранить</button>
+          <button class="popup__button-close button" type="button" value="&#160;" aria-label="Закрыть"></button>
+        </form>
+      </div>
     </div>
   </div>
   <script src="scripts/script.js"></script>

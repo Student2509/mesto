@@ -1,5 +1,5 @@
 let popup = document.querySelector('.popup');
-let formElement = document.querySelector('.popup__container');
+let formElement = document.querySelector('.popup__form');
 let buttonEdit = document.querySelector('.profile__button-edit');
 let buttonClose = document.querySelector('.popup__button-close');
 
