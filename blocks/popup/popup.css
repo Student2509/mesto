@@ -10,6 +10,8 @@
   align-items: center;
   background-color: rgba(0, 0, 0, .5);
   z-index: 10;
+  visibility: visible;
+  /* transition: visibility 0.9s, opacity 0.8s linear; */
 }
 
 @media screen and (max-width:319px) {

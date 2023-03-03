@@ -28,61 +28,86 @@
       </section>
       <section class="elements">
         <div class="elements__item">
-          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение: Карачаевск">
+          <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
+          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
           <div class="elements__title-bar">
-            <h2 class="elements__title">Карачаевск</h2>
+            <h2 class="elements__title"></h2>
             <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
           </div>
         </div>
         <div class="elements__item">
-          <img class="elements__picture" src="./images/elements-mountain.jpg" alt="Изображение: Гора Эльбрус">
+          <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
+          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
           <div class="elements__title-bar">
-            <h2 class="elements__title">Гора Эльбрус</h2>
+            <h2 class="elements__title"></h2>
             <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
           </div>
         </div>
         <div class="elements__item">
-          <img class="elements__picture" src="./images/elements-dombai.jpg" alt="Изображение: Домбай">
+          <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
+          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
           <div class="elements__title-bar">
-            <h2 class="elements__title">Домбай</h2>
+            <h2 class="elements__title"></h2>
             <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
           </div>
         </div>
         <div class="elements__item">
-          <img class="elements__picture" src="./images/elements-mountain.jpg" alt="Изображение: Гора Эльбрус">
+          <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
+          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
           <div class="elements__title-bar">
-            <h2 class="elements__title">Гора Эльбрус</h2>
+            <h2 class="elements__title"></h2>
             <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
           </div>
         </div>
         <div class="elements__item">
-          <img class="elements__picture" src="./images/elements-dombai.jpg" alt="Изображение: Домбай">
+          <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
+          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
           <div class="elements__title-bar">
-            <h2 class="elements__title">Домбай</h2>
+            <h2 class="elements__title"></h2>
             <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
           </div>
         </div>
         <div class="elements__item">
-          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение: Карачаево-Черкессия">
+          <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
+          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
           <div class="elements__title-bar">
-            <h2 class="elements__title">Карачаево-Черкессия</h2>
+            <h2 class="elements__title"></h2>
             <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
           </div>
         </div>
+
+        <template id="elementsItem">
+          <div class="elements__item">
+            <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
+            <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
+            <div class="elements__title-bar">
+              <h2 class="elements__title"></h2>
+              <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
+            </div>
+          </div>
+        </template>
+
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023. Mesto Russia by Yury B.</p>
     </footer>
-    <div class="popup">
+    <div class="popup" id="popUpForm">
       <div class="popup__container">
         <form class="popup__form" name="edit-form" autocomplete="off">
           <h3 class="popup__title">Редактировать профиль</h3>
-          <input class="popup__edit-line popup__edit-line_field_name" type="text" name="name" value="&#160;">
-          <input class="popup__edit-line popup__edit-line_field_description" type="text" name="description" value="&#160;">
-          <button class="popup__button-save button" type="submit" value="Сохранить" aria-label="Сохранить">Сохранить</button>
-          <button class="popup__button-close button" type="button" value="&#160;" aria-label="Закрыть"></button>
+          <input class="popup__edit-line popup__edit-line_field_name" type="text" name="name" value="&#160;" placeholder="">
+          <input class="popup__edit-line popup__edit-line_field_description" type="text" name="description" value="&#160;" placeholder="">
+          <button class="popup__button-submit button" id="editFormButtonSave" type="submit" value="&#160;" aria-label="Сохранить"></button>
+          <button class="popup__button-close button" id="editFormButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
         </form>
+      </div>
+    </div>
+    <div class="popup popup_dark" id="popUpPicture">
+      <div class="popup__image">
+        <img class="popup__image-picture" src="images/elements-dombai.jpg" alt="">
+        <h4 class="popup__image-title"></h4>
+        <button class="popup__button-close popup__image-close button" id="imageButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
       </div>
     </div>
   </div>

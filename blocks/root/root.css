@@ -9,4 +9,6 @@
   -moz-text-size-adjust: 100%;
   
   text-rendering: optimizeLegibility;
+
+  /* transition: visibility 0.9s, opacity 0.8s linear; */
 }

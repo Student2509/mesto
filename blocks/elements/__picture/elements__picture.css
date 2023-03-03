@@ -1,4 +1,10 @@
 .elements__picture {
   max-width: 100%;
+  min-height: 282px;
+  max-height: 282px;
   margin: 0;
+}
+
+.elements__picture:hover {
+  cursor: pointer;
 }
