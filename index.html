@@ -27,55 +27,6 @@
         <button class="profile__button-add button" type="button" value="&#160;" aria-label="Добавить"></button>
       </section>
       <section class="elements">
-        <div class="elements__item">
-          <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
-          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
-          <div class="elements__title-bar">
-            <h2 class="elements__title"></h2>
-            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
-          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
-          <div class="elements__title-bar">
-            <h2 class="elements__title"></h2>
-            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
-          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
-          <div class="elements__title-bar">
-            <h2 class="elements__title"></h2>
-            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
-          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
-          <div class="elements__title-bar">
-            <h2 class="elements__title"></h2>
-            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
-          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
-          <div class="elements__title-bar">
-            <h2 class="elements__title"></h2>
-            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
-          <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
-          <div class="elements__title-bar">
-            <h2 class="elements__title"></h2>
-            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
-          </div>
-        </div>
-
         <template id="elementsItem">
           <div class="elements__item">
             <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
@@ -86,15 +37,25 @@
             </div>
           </div>
         </template>
-
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023. Mesto Russia by Yury B.</p>
     </footer>
-    <div class="popup" id="popUpForm">
+    <div class="popup" id="popUpEdit">
       <div class="popup__container">
         <form class="popup__form" name="edit-form" autocomplete="off">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <input class="popup__edit-line popup__edit-line_field_name" type="text" name="name" value="&#160;" placeholder="">
+          <input class="popup__edit-line popup__edit-line_field_description" type="text" name="description" value="&#160;" placeholder="">
+          <button class="popup__button-submit button" id="editFormButtonSave" type="submit" value="&#160;" aria-label="Сохранить"></button>
+          <button class="popup__button-close button" id="editFormButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="popUpAdd">
+      <div class="popup__container">
+        <form class="popup__form" name="add-form" autocomplete="off">
           <h3 class="popup__title">Редактировать профиль</h3>
           <input class="popup__edit-line popup__edit-line_field_name" type="text" name="name" value="&#160;" placeholder="">
           <input class="popup__edit-line popup__edit-line_field_description" type="text" name="description" value="&#160;" placeholder="">
