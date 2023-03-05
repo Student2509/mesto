@@ -12,7 +12,8 @@
 }
 
 .elements__like:hover {
-  background-image: url(../../../images/elements-like-hover.svg);
+  /* background-image: url(../../../images/elements-like-hover.svg); */
+  opacity: .5;
 }
 
 .elements__like:active {

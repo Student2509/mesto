@@ -30,7 +30,7 @@
         <template id="elementsItem">
           <div class="elements__item">
             <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
-            <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
+            <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение" onerror="setDefaultImage()">
             <div class="elements__title-bar">
               <h2 class="elements__title"></h2>
               <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
@@ -46,9 +46,9 @@
       <div class="popup__container">
         <form class="popup__form" name="edit-form" autocomplete="off">
           <h3 class="popup__title">Редактировать профиль</h3>
-          <input class="popup__edit-line popup__edit-line_field_name" type="text" name="name" value="&#160;" placeholder="">
-          <input class="popup__edit-line popup__edit-line_field_description" type="text" name="description" value="&#160;" placeholder="">
-          <button class="popup__button-submit button" id="editFormButtonSave" type="submit" value="&#160;" aria-label="Сохранить"></button>
+          <input class="popup__edit-line popup__edit-line_field_name" type="text" name="name" value="&#160;">
+          <input class="popup__edit-line popup__edit-line_field_description" type="text" name="description">
+          <button class="popup__button-submit button" id="editFormButtonSave" type="submit" aria-label="Сохранить">Сохранить</button>
           <button class="popup__button-close button" id="editFormButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
         </form>
       </div>
@@ -56,15 +56,15 @@
     <div class="popup" id="popUpAdd">
       <div class="popup__container">
         <form class="popup__form" name="add-form" autocomplete="off">
-          <h3 class="popup__title">Редактировать профиль</h3>
-          <input class="popup__edit-line popup__edit-line_field_name" type="text" name="name" value="&#160;" placeholder="">
-          <input class="popup__edit-line popup__edit-line_field_description" type="text" name="description" value="&#160;" placeholder="">
-          <button class="popup__button-submit button" id="addFormButtonSave" type="submit" value="&#160;" aria-label="Сохранить"></button>
+          <h3 class="popup__title">Новое место</h3>
+          <input class="popup__edit-line popup__edit-line_field_name" type="text" name="name" placeholder="Название">
+          <input class="popup__edit-line popup__edit-line_field_description" type="text" name="description" placeholder="Ссылка на картинку">
+          <button class="popup__button-submit button" id="addFormButtonSave" type="submit" value="&#160;" aria-label="Создать">Создать</button>
           <button class="popup__button-close button" id="addFormButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
         </form>
       </div>
     </div>
-    <div class="popup popup_dark" id="popUpPicture">
+    <div class="popup popup_theme_dark" id="popUpPicture">
       <div class="popup__image">
         <img class="popup__image-picture" src="images/elements-dombai.jpg" alt="">
         <h4 class="popup__image-title"></h4>
@@ -72,6 +72,7 @@
       </div>
     </div>
   </div>
+  <script src="scripts/cards.js"></script>
   <script src="scripts/script.js"></script>
 </body>
 </html>

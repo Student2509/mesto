@@ -1,5 +1,5 @@
 .popup {
-  /* to close popup we need to change display 'flex' to 'none' */
+  visibility: hidden;
   display: none;
   width: 100vw;
   height: 100vh;
@@ -8,10 +8,12 @@
   left: 0;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, .5);
   z-index: 10;
-  visibility: visible;
-  /* transition: visibility 0.9s, opacity 0.8s linear; */
+  background-color: rgba(0, 0, 0, 0);
+  
+  transition: visibility 0.5s;
+  /* transition: background-color 0.5s linear; */
+  transition: opacity 0.5s linear;
 }
 
 @media screen and (max-width:319px) {

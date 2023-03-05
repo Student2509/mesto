@@ -12,8 +12,9 @@
 
 @media screen and (max-width:641px) {
   .profile__grid {
+    align-self: center;
     max-width: 282px;
-    margin: 26px 19px 0 auto;
+    /* margin: 26px 19px 0 auto; */
     padding: 0;
   }
 }

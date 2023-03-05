@@ -3,223 +3,161 @@
 
 //                 *********** profile related ************
 
-let editButton = document.querySelector('.profile__button-edit');
-let addButton = document.querySelector('.profile__button-add'); 
+const buttonEdit = document.querySelector('.profile__button-edit');
+const buttonAdd = document.querySelector('.profile__button-add'); 
 
-let profileTitle = document.querySelector('.profile__title');
-let profileSubtitle = document.querySelector('.profile__subtitle');
+const profileTitle = document.querySelector('.profile__title');
+const profileSubtitle = document.querySelector('.profile__subtitle');
 
 //                 *********** popup edit form related ************
 
-let editPopUp = document.querySelector('#popUpEdit');
-let editForm = editPopUp.querySelector('.popup__form');
-let editFormTitle = editPopUp.querySelector('.popup__title');
-let editFormNameInput = editPopUp.querySelector('.popup__edit-line_field_name');
-let editFormJobInput = editPopUp.querySelector('.popup__edit-line_field_description');
-let editFormButtonSubmit = editPopUp.querySelector('.popup__button-submit');
-let editFormButtonClose = editPopUp.querySelector('.popup__button-close');
-
-let popUpEditFromDefault = {
-  title: 'Редактировать профиль',
-  itemName: 'Жак-Ив Кусто',
-  itemNamePlaceholder: '',
-  itemDescription: 'Исследователь океана',
-  itemDescriptionPlaceholder: '',
-  buttonName: 'Сохранить',
-}
+const popUpEdit = document.querySelector('#popUpEdit');
+const formEdit = popUpEdit.querySelector('.popup__form');
+const formEditTitle = popUpEdit.querySelector('.popup__title');
+const formEditNameInput = popUpEdit.querySelector('.popup__edit-line_field_name');
+const formEditJobInput = popUpEdit.querySelector('.popup__edit-line_field_description');
+const formEditButtonSubmit = popUpEdit.querySelector('.popup__button-submit');
+const formEditButtonClose = popUpEdit.querySelector('.popup__button-close');
 
 //                 *********** popup add form related ************
 
-let addPopUp = document.querySelector('#popUpAdd');
-let addForm = addPopUp.querySelector('.popup__form');
-let addFormTitle = addPopUp.querySelector('.popup__title');
-let addFormNameInput = addPopUp.querySelector('.popup__edit-line_field_name');
-let addFormJobInput = addPopUp.querySelector('.popup__edit-line_field_description');
-let addFormButtonSubmit = addPopUp.querySelector('.popup__button-submit');
-let addFormButtonClose = addPopUp.querySelector('.popup__button-close');
-
-let popUpAddFromDefault = {
-  title: 'Новое место',
-  itemName: '',
-  itemNamePlaceholder: 'Название',
-  itemDescription: '',
-  itemDescriptionPlaceholder: 'Ссылка на картинку',
-  buttonName: 'Создать',
-}
+const popUpAdd = document.querySelector('#popUpAdd');
+const formAdd = popUpAdd.querySelector('.popup__form');
+const formAddTitle = popUpAdd.querySelector('.popup__title');
+const formAddNameInput = popUpAdd.querySelector('.popup__edit-line_field_name');
+const formAddJobInput = popUpAdd.querySelector('.popup__edit-line_field_description');
+const formAddButtonSubmit = popUpAdd.querySelector('.popup__button-submit');
+const formAddButtonClose = popUpAdd.querySelector('.popup__button-close');
 
 //                 *********** popup picture related ************
 
-let picturePopUp = document.querySelector('#popUpPicture');
-let closePictureButton = picturePopUp.querySelector('.popup__button-close');
+const popUpPicture = document.querySelector('#popUpPicture');
+const buttonClosePicture = popUpPicture.querySelector('.popup__button-close');
 
 //                 *********** elements/crads related ************
 
-let cards = document.querySelector('.elements');
-let elementsTemplate = document.querySelector('#elementsItem').content;
+const cardsContainer = document.querySelector('.elements');
+const elementsTemplate = document.querySelector('#elementsItem').content;
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
 
 // ************************************************ FUNCTIONS ************************************************
 
 //                 *********** popup edit form related ************
 
-function openEditPopUp () {
-  // Без данного блока IF открытие PopUp также происходит плавно. В т/з сказано только о плавном закрытии.
-  if (editPopUp.classList.contains('fading-element')) {
-    editPopUp.classList.remove('transition');
-    editPopUp.classList.remove('fading-element');
-  }
-  editFormTitle.textContent = popUpEditFromDefault.title;
-  editFormNameInput.value = popUpEditFromDefault.itemName;
-  editFormNameInput.placeholder = popUpEditFromDefault.itemNamePlaceholder;
-  editFormJobInput.value = popUpEditFromDefault.itemDescription;
-  editFormJobInput.placeholder = popUpEditFromDefault.itemDescriptionPlaceholder;
-  editFormButtonSubmit.textContent = popUpEditFromDefault.buttonName;
-  editPopUp.classList.add('popup_opened');
+function openPopUpEdit () {
+  formEditNameInput.value = profileTitle.textContent;
+  formEditJobInput.value = profileSubtitle.textContent;
+  popUpEdit.classList.add('popup_opened');
 }
 
-function closeEditPopUp () {
-  editPopUp.classList.add('transition');
-  editPopUp.classList.add('fading-element');
+function closePopUpEdit () {
+  popUpEdit.classList.remove('popup_opened');
 }
 
 function buttonEditHandler (evt) {
   evt.preventDefault(); 
-  profileTitle.textContent = editFormNameInput.value;
-  profileSubtitle.textContent = editFormJobInput.value;
-  popUpEditFromDefault.itemName = editFormNameInput.value;
-  popUpEditFromDefault.itemDescription = editFormJobInput.value;
-  closeEditPopUp();
+  profileTitle.textContent = formEditNameInput.value;
+  profileSubtitle.textContent = formEditJobInput.value;
+  closePopUpEdit();
 }
 
-editButton.addEventListener('click', openEditPopUp);
-editForm.addEventListener('submit', buttonEditHandler);
-editFormButtonClose.addEventListener('click', closeEditPopUp);
+buttonEdit.addEventListener('click', openPopUpEdit);
+formEdit.addEventListener('submit', buttonEditHandler);
+formEditButtonClose.addEventListener('click', closePopUpEdit);
 
 //                 *********** popup add form related ************
 
-function openAddPopUp () {
-  // Без данного блока IF открытие PopUp также происходит плавно. В т/з сказано только о плавном закрытии.
-  if (addPopUp.classList.contains('fading-element')) {
-    addPopUp.classList.remove('transition');
-    addPopUp.classList.remove('fading-element');
-  }
-  addFormTitle.textContent = popUpAddFromDefault.title;
-  addFormNameInput.value = popUpAddFromDefault.itemName;
-  addFormNameInput.placeholder = popUpAddFromDefault.itemNamePlaceholder;
-  addFormJobInput.value = popUpAddFromDefault.itemDescription;
-  addFormJobInput.placeholder = popUpAddFromDefault.itemDescriptionPlaceholder;
-  addFormButtonSubmit.textContent = popUpAddFromDefault.buttonName;
+function openPopUpAdd () {
+  formAddNameInput.addEventListener('keydown', changingFormAddInput);
+  formAddJobInput.addEventListener('keydown', changingFormAddInput);
+  formAddNameInput.classList.add('popup__edit-line_placeholder');
+  formAddJobInput.classList.add('popup__edit-line_placeholder');
 
-  addFormNameInput.addEventListener('keydown', changingAddFormInput);
-  addFormJobInput.addEventListener('keydown', changingAddFormInput);
-  addFormNameInput.classList.add('popup__edit-line_placeholder');
-  addFormJobInput.classList.add('popup__edit-line_placeholder');
-
-  addPopUp.classList.add('popup_opened');
+  popUpAdd.classList.add('popup_opened');
 }
 
-function closeAddPopUp () {
-  addPopUp.classList.add('transition');
-  addPopUp.classList.add('fading-element');
+function closePopUpAdd () {
+  popUpAdd.classList.remove('popup_opened');
 }
 
-function changingAddFormInput () {
-  addFormNameInput.classList.remove('popup__edit-line_placeholder');
-  addFormJobInput.classList.remove('popup__edit-line_placeholder');
+function changingFormAddInput () {
+  formAddNameInput.classList.remove('popup__edit-line_placeholder');
+  formAddJobInput.classList.remove('popup__edit-line_placeholder');
 }
+
+let currentCard;
 
 function buttonAddHandler (evt) {
   evt.preventDefault();
-  let newElement = elementsTemplate.querySelector('.elements__item').cloneNode(true);
-  newElement.querySelector('.elements__title').textContent = addFormNameInput.value;
-  newElement.querySelector('.elements__picture').src = addFormJobInput.value;
-  newElement.querySelector('.elements__picture').alt = addFormNameInput.value;
+  const newElement = createCard();
+  currentCard = newElement;
+  newElement.querySelector('.elements__title').textContent = formAddNameInput.value;
+  newElement.querySelector('.elements__picture').src = formAddJobInput.value;
+  newElement.querySelector('.elements__picture').alt = formAddNameInput.value;
   newElement.querySelector('.elements__delete').addEventListener('click', deleteCard);
   newElement.querySelector('.elements__like').addEventListener('click', clickLike);
+  newElement.querySelector('.elements__picture').addEventListener('click', openPicture);
 
-  newElement.querySelector('.elements__picture').onerror = function() {
-    alert('Что-то не так со ссылкой на изображение :(');
-    newElement.querySelector('.elements__picture').src = './images/elements-image-not-found.png';
-  }
+  formAddNameInput.value = '';
+  formAddJobInput.value = '';
 
-  cards.prepend(newElement);
-  closeAddPopUp();
+  cardsContainer.prepend(newElement);
+  closePopUpAdd();
 }
 
-addButton.addEventListener('click', openAddPopUp);
-addForm.addEventListener('submit', buttonAddHandler);
-addFormButtonClose.addEventListener('click', closeAddPopUp);
+function setDefaultImage() {
+  alert('Что-то не так со ссылкой на изображение :(');
+  currentCard.querySelector('.elements__picture').src = './images/elements-image-not-found.png';
+}
+
+buttonAdd.addEventListener('click', openPopUpAdd);
+formAdd.addEventListener('submit', buttonAddHandler);
+formAddButtonClose.addEventListener('click', closePopUpAdd);
 
 //                 *********** popup picture related ************
 
 function openPicture(evt) {
   evt.preventDefault();
-  if (picturePopUp.classList.contains('fading-element')) {
-    picturePopUp.classList.remove('transition');
-    picturePopUp.classList.remove('fading-element');
-  }
-  let picture = evt.target;
-  let pictureAdress = picture.src;
-  let pictureTitleElement = picture.nextElementSibling;
-  let pictureTitle = pictureTitleElement.querySelector('.elements__title').textContent;
-  picturePopUp.querySelector('.popup__image-picture').src = pictureAdress;
-  picturePopUp.querySelector('.popup__image-title').textContent = pictureTitle;
-  picturePopUp.querySelector('.popup__image-picture').alt = pictureTitle;
-  picturePopUp.classList.add('popup_opened');
+  const picture = evt.target;
+  const pictureAdress = picture.src;
+  const pictureTitleElement = picture.nextElementSibling;
+  const pictureTitle = pictureTitleElement.querySelector('.elements__title').textContent;
+  popUpPicture.querySelector('.popup__image-picture').src = pictureAdress;
+  popUpPicture.querySelector('.popup__image-title').textContent = pictureTitle;
+  popUpPicture.querySelector('.popup__image-picture').alt = pictureTitle;
+  popUpPicture.classList.add('transition');
+  popUpPicture.classList.add('popup_opened');
 }
 
-function closePicturePopUp () {
-  picturePopUp.classList.add('transition');
-  picturePopUp.classList.add('fading-element');
+function closePopUpPicture () {
+  popUpPicture.classList.remove('popup_opened');
 }
 
-closePictureButton.addEventListener('click', closePicturePopUp);
+buttonClosePicture.addEventListener('click', closePopUpPicture);
 
 //                 *********** elements related ************
 
 function clickLike (evt) {
   evt.preventDefault();
-  let buttonLike = evt.target;
+  const buttonLike = evt.target;
   buttonLike.classList.toggle('elements__like-active');
 }
 
 function deleteCard (evt) {
-  let deleteButton = evt.target;
-  let elementItem = deleteButton.closest('.elements__item');
+  const deleteButton = evt.target;
+  const elementItem = deleteButton.closest('.elements__item');
   elementItem.remove();
+}
+
+function createCard () {
+  return elementsTemplate.querySelector('.elements__item').cloneNode(true);
 }
 
 function activateDefaultCards () {
   let index = 0;
   initialCards.forEach( function(card) {
 
-    let newElement = elementsTemplate.querySelector('.elements__item').cloneNode(true);
+    const newElement = createCard();
     newElement.querySelector('.elements__title').textContent = initialCards[index].name;
     newElement.querySelector('.elements__picture').src = initialCards[index].link;
     newElement.querySelector('.elements__picture').alt = 'Изображение: ' + initialCards[index].name;
@@ -227,14 +165,10 @@ function activateDefaultCards () {
     newElement.querySelector('.elements__delete').addEventListener('click', deleteCard);
     newElement.querySelector('.elements__like').addEventListener('click', clickLike);
 
-    cards.append(newElement);
-    console.log(index);
-    console.log(newElement);
-    console.log(newElement.querySelector('.elements__title').textContent);
-    console.log(newElement.querySelector('.elements__picture').src);
-    console.log(newElement.querySelector('.elements__picture').alt);
+    cardsContainer.append(newElement);
     index += 1;
   });
 }
 
 activateDefaultCards();
+
