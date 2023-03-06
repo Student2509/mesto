@@ -1,5 +1,5 @@
 
-// ************************************************ VARIABLES ************************************************
+// ************************************************ VARIABLES / CONSTANTS ************************************************
 
 //                 *********** profile related ************
 
@@ -34,10 +34,11 @@ const formAddButtonClose = popUpAdd.querySelector('.popup__button-close');
 const popUpPicture = document.querySelector('#popUpPicture');
 const buttonClosePicture = popUpPicture.querySelector('.popup__button-close');
 
-//                 *********** elements/crads related ************
+//                 *********** elements/cards related ************
 
 const cardsContainer = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('#elementsItem').content;
+let currentCard;
 
 
 // ************************************************ FUNCTIONS ************************************************
@@ -85,8 +86,6 @@ function changingFormAddInput () {
   formAddJobInput.classList.remove('popup__edit-line_placeholder');
 }
 
-let currentCard;
-
 function buttonAddHandler (evt) {
   evt.preventDefault();
   const newElement = createCard();
@@ -97,17 +96,13 @@ function buttonAddHandler (evt) {
   newElement.querySelector('.elements__delete').addEventListener('click', deleteCard);
   newElement.querySelector('.elements__like').addEventListener('click', clickLike);
   newElement.querySelector('.elements__picture').addEventListener('click', openPicture);
+  newElement.querySelector('.elements__picture').addEventListener('error', setDefaultImage);
 
   formAddNameInput.value = '';
   formAddJobInput.value = '';
 
   cardsContainer.prepend(newElement);
   closePopUpAdd();
-}
-
-function setDefaultImage() {
-  alert('Что-то не так со ссылкой на изображение :(');
-  currentCard.querySelector('.elements__picture').src = './images/elements-image-not-found.png';
 }
 
 buttonAdd.addEventListener('click', openPopUpAdd);
@@ -153,6 +148,11 @@ function createCard () {
   return elementsTemplate.querySelector('.elements__item').cloneNode(true);
 }
 
+function setDefaultImage() {
+  alert('Что-то не так со ссылкой на изображение :(');
+  currentCard.querySelector('.elements__picture').src = './images/elements-image-not-found.png';
+}
+
 function activateDefaultCards () {
   let index = 0;
   initialCards.forEach( function(card) {
@@ -171,4 +171,3 @@ function activateDefaultCards () {
 }
 
 activateDefaultCards();
-

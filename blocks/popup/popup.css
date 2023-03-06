@@ -1,6 +1,6 @@
 .popup {
   visibility: hidden;
-  display: none;
+  display: flex;
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -10,10 +10,12 @@
   align-items: center;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0);
+  opacity: 0;
   
-  transition: visibility 0.5s;
+  transition: visibility 0.5s, opacity 0.5s linear, background-color 0.5s linear;
+  /* transition: visibility 0.5s; */
   /* transition: background-color 0.5s linear; */
-  transition: opacity 0.5s linear;
+  /* transition: opacity 0.5s linear; */
 }
 
 @media screen and (max-width:319px) {
