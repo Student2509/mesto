@@ -16,6 +16,8 @@
   opacity: .5;
 }
 
-/* .elements__like:active {
-  background-image: url(../../../images/elements-like-active.svg);
-} */
+@media screen and (max-width:641px) {
+  .elements__like:hover {
+    opacity: 1;
+  }
+}

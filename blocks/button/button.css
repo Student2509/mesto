@@ -5,3 +5,9 @@
 .button:hover {
   opacity: .6;
 }
+
+@media screen and (max-width:641px) {
+  .button:hover {
+    opacity: 1;
+  }
+}
