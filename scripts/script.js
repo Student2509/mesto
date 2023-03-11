@@ -43,9 +43,6 @@ const elementsTemplate = document.querySelector('#elementsItem').content;
 
 //                 *********** popup edit / add related ************
 
-formEditNameInput.value = profileTitle.textContent;
-formEditJobInput.value = profileSubtitle.textContent;
-
 function openPopUp(popup) {
   popup.classList.add('popup_opened');
 }
@@ -63,7 +60,7 @@ function handleButtonEdit (evt) {
 
 function handleButtonAdd (evt) {
   evt.preventDefault();
-  const newElement = createCard(formAddNameInput.value, formAddJobInput.value, formAddNameInput.value);
+  const newElement = createCard(formAddNameInput.value, formAddJobInput.value);
   // picture.addEventListener('error', function() {
   //   alert('Что-то не так со ссылкой на изображение :(');
   //   picture.src = './images/elements-image-not-found.png';
@@ -75,13 +72,17 @@ function handleButtonAdd (evt) {
   closePopUp(popUpAdd);
 }
 
-buttonEdit.addEventListener('click', () => {openPopUp(popUpEdit)});
+buttonEdit.addEventListener('click', () => {
+  formEditNameInput.value = profileTitle.textContent;
+  formEditJobInput.value = profileSubtitle.textContent;
+  openPopUp(popUpEdit);
+});
 formEdit.addEventListener('submit', handleButtonEdit);
-formEditButtonClose.addEventListener('click', () => {closePopUp(popUpEdit)});
+formEditButtonClose.addEventListener('click', () => {closePopUp(popUpEdit);});
 
-buttonAdd.addEventListener('click', () => {openPopUp(popUpAdd)});
+buttonAdd.addEventListener('click', () => {openPopUp(popUpAdd);});
 formAdd.addEventListener('submit', handleButtonAdd);
-formAddButtonClose.addEventListener('click', () => {closePopUp(popUpAdd)});
+formAddButtonClose.addEventListener('click', () => {closePopUp(popUpAdd);});
 
 //                 *********** popup picture related ************
 
@@ -97,7 +98,7 @@ function openPicture(evt) {
   openPopUp(popUpPicture);
 }
 
-buttonClosePicture.addEventListener('click', () => {closePopUp(popUpPicture)});
+buttonClosePicture.addEventListener('click', () => {closePopUp(popUpPicture);});
 
 //                 *********** elements related ************
 
@@ -113,11 +114,11 @@ function deleteCard (evt) {
   elementItem.remove();
 }
 
-function createCard (title, image, imageAlt) {
+function createCard (title, image) {
   const newCard = elementsTemplate.querySelector('.elements__item').cloneNode(true);
   const picture = newCard.querySelector('.elements__picture');
   picture.src = image; //formAddJobInput.value;
-  picture.alt = imageAlt; //formAddNameInput.value;
+  picture.alt = 'Изображение: ' + title; //formAddNameInput.value;
   newCard.querySelector('.elements__title').textContent = title; // formAddNameInput.value;
   picture.addEventListener('click', openPicture);
   newCard.querySelector('.elements__delete').addEventListener('click', deleteCard);
@@ -128,7 +129,7 @@ function createCard (title, image, imageAlt) {
 
 function activateDefaultCards () {
   initialCards.forEach( function(card) {
-    const newElement = createCard(card.name, card.link, 'Изображение: ' + card.name);
+    const newElement = createCard(card.name, card.link);
     cardsContainer.append(newElement);
   });
 }
