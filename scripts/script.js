@@ -44,11 +44,15 @@ const elementsTemplate = document.querySelector('#elementsItem').content;
 //                 *********** popup edit / add related ************
 
 function openPopUp(popup) {
+  document.addEventListener('keydown', handleCloseByEsc);
+  document.addEventListener('click', handleCloseByClickOutside);
   popup.classList.add('popup_opened');
 }
 
 function closePopUp(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleCloseByEsc);
+  document.removeEventListener('click', handleCloseByClickOutside);
 }
 
 function handleButtonEdit (evt) {
@@ -72,6 +76,24 @@ function handleButtonAdd (evt) {
   closePopUp(popUpAdd);
 }
 
+function handleCloseByEsc (evt) {
+  if (evt.key === 'Escape') {
+    setDefaultErrorFields(getActivePopUp());
+    closePopUp(getActivePopUp());
+  }
+}
+
+function handleCloseByClickOutside (evt) {
+  if (evt.target.classList.contains('popup')) {
+    setDefaultErrorFields(getActivePopUp());
+    closePopUp(getActivePopUp());
+  }
+}
+
+function getActivePopUp () {
+  return document.querySelector('.popup_opened');
+}
+
 buttonEdit.addEventListener('click', () => {
   formEditNameInput.value = profileTitle.textContent;
   formEditJobInput.value = profileSubtitle.textContent;
@@ -80,7 +102,11 @@ buttonEdit.addEventListener('click', () => {
 formEdit.addEventListener('submit', handleButtonEdit);
 formEditButtonClose.addEventListener('click', () => {closePopUp(popUpEdit);});
 
-buttonAdd.addEventListener('click', () => {openPopUp(popUpAdd);});
+buttonAdd.addEventListener('click', () => {
+  formAddNameInput.value = '';
+  formAddJobInput.value = '';
+  openPopUp(popUpAdd);
+});
 formAdd.addEventListener('submit', handleButtonAdd);
 formAddButtonClose.addEventListener('click', () => {closePopUp(popUpAdd);});
 
@@ -117,9 +143,9 @@ function deleteCard (evt) {
 function createCard (title, image) {
   const newCard = elementsTemplate.querySelector('.elements__item').cloneNode(true);
   const picture = newCard.querySelector('.elements__picture');
-  picture.src = image; //formAddJobInput.value;
-  picture.alt = 'Изображение: ' + title; //formAddNameInput.value;
-  newCard.querySelector('.elements__title').textContent = title; // formAddNameInput.value;
+  picture.src = image;
+  picture.alt = 'Изображение: ' + title;
+  newCard.querySelector('.elements__title').textContent = title;
   picture.addEventListener('click', openPicture);
   newCard.querySelector('.elements__delete').addEventListener('click', deleteCard);
   newCard.querySelector('.elements__like').addEventListener('click', clickButtonLike);
