@@ -1,78 +1,79 @@
 //                 *********** VALIDATION related ************
 
-const showInputError = (formElement, inputElement, errorMessage) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__edit-line_incorrect');
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__edit-line-error');
-  };
+const showInputError = (formElement, inputElement, errorMessage, settings) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add(settings.inputErrorClass);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(settings.errorClass);
+};
   
-  const hideInputError = (formElement, inputElement) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__edit-line_incorrect');
-    errorElement.classList.remove('popup__edit-line-error');
-    errorElement.textContent = '';
-  };
+const hideInputError = (formElement, inputElement, settings) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove(settings.inputErrorClass);
+  errorElement.classList.remove(settings.errorClass);
+  errorElement.textContent = '';
+};
   
-  const hasInvalidInput = (inputList) => {
-    return inputList.some((inputElement) => {
-      return !inputElement.validity.valid;
-    });
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+}
+
+const toggleButtonState = (inputList, buttonElement, settings) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(settings.inactiveButtonClass);
+    buttonElement.disabled = true;
+  } else {
+    buttonElement.classList.remove(settings.inactiveButtonClass);
+    buttonElement.disabled = false;
   }
+}
   
-  const toggleButtonState = (inputList, buttonElement) => {
-    if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__button-submit_non-active');
-    } else {
-      buttonElement.classList.remove('popup__button-submit_non-active');
-    }
+const checkInputValidity = (formElement, inputElement, settings) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage, settings);
+  } else {
+    hideInputError(formElement, inputElement, settings);
   }
-  
-  const checkInputValidity = (formElement, inputElement) => {
-    if (!inputElement.validity.valid) {
-      showInputError(formElement, inputElement, inputElement.validationMessage);
-    } else {
-      hideInputError(formElement, inputElement);
-    }
-  };
-  
-  const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__edit-line'));
-    const buttonElement = formElement.querySelector('.popup__button-submit');
-    if (formElement.id != 'editProfileFormSet') {
-      toggleButtonState(inputList, buttonElement);
-    }
-  
-    inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input', function () {
-        checkInputValidity(formElement, inputElement);
-        toggleButtonState(inputList, buttonElement);
-      });
+};
+
+const setEventListeners = (formElement, settings) => {
+  const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
+  const buttonElement = formElement.querySelector(settings.submitButtonSelector);
+  toggleButtonState(inputList, buttonElement, settings);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(formElement, inputElement, settings);
+      toggleButtonState(inputList, buttonElement, settings);
     });
-  };
-  
-  const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll('.form'));
-    formList.forEach((formElement) => {
-      formElement.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-      });
-      
-      const fieldsetList = Array.from(formElement.querySelectorAll('.form__set'));
-      fieldsetList.forEach((fieldSet) => {
-        setEventListeners(fieldSet);
-      }); 
-  
-    });
-  };
-  
-  function setDefaultErrorFields(popup) {
-    const inputList = popup.querySelectorAll('.popup__edit-line');
-    inputList.forEach(function(input) {
-      if ((input.classList.contains('popup__edit-line_incorrect')) || (input.classList.contains('popup__edit-line-error'))) {
-        hideInputError(popup.querySelector('.form'), input);
-      }
-    });
-  }
-  
-  enableValidation();
+  });
+};
+
+const enableValidation = (settings) => {
+  const formList = Array.from(document.querySelectorAll(settings.formSelector));
+  formList.forEach((formElement) => {
+    // formElement.addEventListener('submit', function (evt) {
+    //   evt.preventDefault();
+    // });
+    setEventListeners(formElement, settings);
+  });
+};
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__edit-line',
+  submitButtonSelector: '.popup__button-submit',
+  inactiveButtonClass: 'popup__button-submit_non-active',
+  inputErrorClass: 'popup__edit-line_incorrect',
+  errorClass: 'popup__edit-line-error'
+});
+
+// function setDefaultErrorFields(popup) {
+//   const inputList = popup.querySelectorAll('.popup__edit-line');
+//   inputList.forEach(function(input) {
+//     if ((input.classList.contains('popup__edit-line_incorrect')) || (input.classList.contains('popup__edit-line-error'))) {
+//       hideInputError(popup.querySelector('.form'), input);
+//     }
+//   });
+// }

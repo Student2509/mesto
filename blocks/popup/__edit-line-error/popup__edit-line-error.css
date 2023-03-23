@@ -16,3 +16,15 @@
 .popup__edit-line-error:last-of-type {
   top: 200px;
 }
+
+@media screen and (max-width:340px) {
+  .popup__edit-line-error {
+    max-width: 238px;
+    top: 150px;
+  }
+
+  .popup__edit-line-error:last-of-type {
+    max-width: 238px;
+    top: 210px;
+  }
+}

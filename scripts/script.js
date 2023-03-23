@@ -44,19 +44,20 @@ const elementsTemplate = document.querySelector('#elementsItem').content;
 //                 *********** popup edit / add related ************
 
 function openPopUp(popup) {
+  //toggleButtonStateTest(inputList, buttonElement, settings);
   document.addEventListener('keydown', handleCloseByEsc);
-  document.addEventListener('click', handleCloseByClickOutside);
+  popup.addEventListener('click', handleCloseByClickOutside);
   popup.classList.add('popup_opened');
 }
 
 function closePopUp(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleCloseByEsc);
-  document.removeEventListener('click', handleCloseByClickOutside);
+  popup.removeEventListener('click', handleCloseByClickOutside);
 }
 
 function handleButtonEdit (evt) {
-  evt.preventDefault(); 
+  evt.preventDefault();
   profileTitle.textContent = formEditNameInput.value;
   profileSubtitle.textContent = formEditJobInput.value;
   closePopUp(popUpEdit);
@@ -78,15 +79,15 @@ function handleButtonAdd (evt) {
 
 function handleCloseByEsc (evt) {
   if (evt.key === 'Escape') {
-    setDefaultErrorFields(getActivePopUp());
+    // setDefaultErrorFields(getActivePopUp());
     closePopUp(getActivePopUp());
   }
 }
 
 function handleCloseByClickOutside (evt) {
   if (evt.target.classList.contains('popup')) {
-    setDefaultErrorFields(getActivePopUp());
-    closePopUp(getActivePopUp());
+    // setDefaultErrorFields(getActivePopUp());
+    closePopUp(evt.target);
   }
 }
 
@@ -97,6 +98,8 @@ function getActivePopUp () {
 buttonEdit.addEventListener('click', () => {
   formEditNameInput.value = profileTitle.textContent;
   formEditJobInput.value = profileSubtitle.textContent;
+  formEditButtonSubmit.disabled = false;
+  formEditButtonSubmit.classList.remove('popup__button-submit_non-active');
   openPopUp(popUpEdit);
 });
 formEdit.addEventListener('submit', handleButtonEdit);
@@ -105,6 +108,7 @@ formEditButtonClose.addEventListener('click', () => {closePopUp(popUpEdit);});
 buttonAdd.addEventListener('click', () => {
   formAddNameInput.value = '';
   formAddJobInput.value = '';
+  formAddButtonSubmit.disabled = true;
   openPopUp(popUpAdd);
 });
 formAdd.addEventListener('submit', handleButtonAdd);
@@ -112,15 +116,10 @@ formAddButtonClose.addEventListener('click', () => {closePopUp(popUpAdd);});
 
 //                 *********** popup picture related ************
 
-function openPicture(evt) {
-  evt.preventDefault();
-  const picture = evt.target;
-  const pictureAdress = picture.src;
-  const pictureTitleElement = picture.nextElementSibling;
-  const pictureTitle = pictureTitleElement.querySelector('.elements__title').textContent;
-  popUpPicture.querySelector('.popup__image-picture').src = pictureAdress;
-  popUpPicture.querySelector('.popup__image-title').textContent = pictureTitle;
-  popUpPicture.querySelector('.popup__image-picture').alt = pictureTitle;
+function openPicture(title, image) {
+  popUpPicture.querySelector('.popup__image-picture').src = image;
+  popUpPicture.querySelector('.popup__image-title').textContent = title;
+  popUpPicture.querySelector('.popup__image-picture').alt = 'Изображение: ' + title;
   openPopUp(popUpPicture);
 }
 
@@ -146,7 +145,7 @@ function createCard (title, image) {
   picture.src = image;
   picture.alt = 'Изображение: ' + title;
   newCard.querySelector('.elements__title').textContent = title;
-  picture.addEventListener('click', openPicture);
+  picture.addEventListener('click', () => openPicture(title, image));
   newCard.querySelector('.elements__delete').addEventListener('click', deleteCard);
   newCard.querySelector('.elements__like').addEventListener('click', clickButtonLike);
 

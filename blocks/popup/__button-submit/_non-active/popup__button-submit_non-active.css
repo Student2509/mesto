@@ -1,3 +1,4 @@
-.popup__button-submit_non-active {
-  opacity: .2;
+.popup__button-submit_non-active:hover {
+  cursor: auto;
+  /* background-color: rgba(0, 0, 0, .15); */
 }

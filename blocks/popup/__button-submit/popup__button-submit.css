@@ -22,6 +22,13 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.popup__button-submit:disabled {
+  /* opacity: .2; */
+  background-color: #fff;
+  border: 1px solid rgba(1, 1, 1, .2);
+  color: rgba(1, 1, 1, .2);;
+}
+
 @media screen and (max-width:641px) {
   .popup__button-submit {
     max-width: calc(100% - 2*22px);

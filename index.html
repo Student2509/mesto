@@ -51,14 +51,14 @@
     <div class="popup" id="popUpEdit">
       <div class="popup__container">
         <form class="popup__form form" name="edit-form" autocomplete="off" novalidate>
-          <fieldset class="form__set" id="editProfileFormSet">
+          <!-- <fieldset class="form__set" id="editProfileFormSet"> -->
             <h3 class="popup__title">Редактировать профиль</h3>
             <input class="popup__edit-line popup__edit-line_field_name" id="name-input" required minlength="2" maxlength="40" type="text" name="name" value="&#160;">
             <span class="popup__edit-line-error name-input-error"></span>
             <input class="popup__edit-line popup__edit-line_field_description" id="description-input" required minlength="2" maxlength="200" type="text" name="description">
             <span class="popup__edit-line-error description-input-error"></span>
             <button class="popup__button-submit button" id="editFormButtonSave" type="submit" aria-label="Сохранить">Сохранить</button>
-          </fieldset>
+          <!-- </fieldset> -->
         </form>
         <button class="popup__button-close button" id="editFormButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
       </div>
@@ -67,14 +67,14 @@
     <div class="popup" id="popUpAdd">
       <div class="popup__container">
         <form class="popup__form form" name="add-form" autocomplete="off" novalidate>
-          <fieldset class="form__set" id="addPictureFormSet">
+          <!-- <fieldset class="form__set" id="addPictureFormSet"> -->
             <h3 class="popup__title">Новое место</h3>
             <input class="popup__edit-line popup__edit-line_field_name" id="picture-name-input" required minlength="2" maxlength="40" type="text" name="name" placeholder="Название">
             <span class="popup__edit-line-error picture-name-input-error"></span>
             <input class="popup__edit-line popup__edit-line_field_description" id="link-input" required type="url" name="description" placeholder="Ссылка на картинку">
             <span class="popup__edit-line-error link-input-error"></span>
             <button class="popup__button-submit button" id="addFormButtonSave" type="submit" value="&#160;" aria-label="Создать">Создать</button>
-          </fieldset>
+          <!-- </fieldset> -->
         </form>
         <button class="popup__button-close button" id="addFormButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
       </div>
