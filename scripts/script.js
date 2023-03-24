@@ -44,16 +44,13 @@ const elementsTemplate = document.querySelector('#elementsItem').content;
 //                 *********** popup edit / add related ************
 
 function openPopUp(popup) {
-  //toggleButtonStateTest(inputList, buttonElement, settings);
   document.addEventListener('keydown', handleCloseByEsc);
-  popup.addEventListener('click', handleCloseByClickOutside);
   popup.classList.add('popup_opened');
 }
 
 function closePopUp(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleCloseByEsc);
-  popup.removeEventListener('click', handleCloseByClickOutside);
 }
 
 function handleButtonEdit (evt) {
@@ -95,6 +92,7 @@ function getActivePopUp () {
   return document.querySelector('.popup_opened');
 }
 
+popUpEdit.addEventListener('click', handleCloseByClickOutside);
 buttonEdit.addEventListener('click', () => {
   formEditNameInput.value = profileTitle.textContent;
   formEditJobInput.value = profileSubtitle.textContent;
@@ -105,10 +103,12 @@ buttonEdit.addEventListener('click', () => {
 formEdit.addEventListener('submit', handleButtonEdit);
 formEditButtonClose.addEventListener('click', () => {closePopUp(popUpEdit);});
 
+popUpAdd.addEventListener('click', handleCloseByClickOutside);
 buttonAdd.addEventListener('click', () => {
   formAddNameInput.value = '';
   formAddJobInput.value = '';
   formAddButtonSubmit.disabled = true;
+  formAddButtonSubmit.classList.add('popup__button-submit_non-active');
   openPopUp(popUpAdd);
 });
 formAdd.addEventListener('submit', handleButtonAdd);
@@ -123,6 +123,7 @@ function openPicture(title, image) {
   openPopUp(popUpPicture);
 }
 
+popUpPicture.addEventListener('click', handleCloseByClickOutside);
 buttonClosePicture.addEventListener('click', () => {closePopUp(popUpPicture);});
 
 //                 *********** elements related ************
