@@ -24,3 +24,13 @@ export const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ]; 
+
+export const formValidationSettings = 
+  {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__edit-line',
+    submitButtonSelector: '.popup__button-submit',
+    inactiveButtonClass: 'popup__button-submit_non-active',
+    inputErrorClass: 'popup__edit-line_incorrect',
+    errorClass: 'popup__edit-line-error'
+  };    

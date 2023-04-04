@@ -1,42 +1,13 @@
 export class Card {
 
-  constructor(card, templateSelector) {
-    this._title = card.name;
-    this._image = card.link;
+  constructor(card, templateSelector, openPicture) {
+    this._name = card.name;
+    this._link = card.link;
     this._templateSelector = templateSelector;
-    this._popup = document.querySelector('#popUpPicture');
-    this._popUpButtonClose = this._popup.querySelector('.popup__button-close');
-    //this._elementItem;
-  }
-
-  _openPopUp() {
-    document.addEventListener('keydown', Card._handleCloseByEsc);
-    const picturePopup = this._popup;
-    const picturePopUpButtonClose = this._popUpButtonClose;
-    picturePopUpButtonClose.addEventListener('click', this._closePopUp);
-    picturePopup.classList.add('popup_opened');
-  }
-  
-  _closePopUp() {
-    const picturePopUp = document.querySelector('#popUpPicture');
-    const picturePopUpButtonClose = picturePopUp.querySelector('.popup__button-close');
-    picturePopUp.classList.remove('popup_opened');
-    document.removeEventListener('keydown', Card._handleCloseByEsc);
-    picturePopUpButtonClose.removeEventListener('click', this._closePopUp);
-  }
-
-  static _handleCloseByEsc(evt) {
-    if (evt.key === 'Escape') {  
-      const buttonClose = document.querySelector('#popUpPicture').querySelector('.popup__button-close');
-      (new Card({name: '', link: ''}, ''))._closePopUp();  //  или можнообъявить _closePopUp статичным и переписать
-                                                           //  через Card._closePopUp в других учатсках кода
-    }
-  }
-  
-  static _handleCloseByClickOutside(evt) {
-    if (evt.target.classList.contains('popup')) {
-      (new Card({name: '', link: ''}, ''))._closePopUp();
-    }
+    this._openPicture = openPicture;
+    // ----- генерируются за пределами конструктора: -----
+    //  this._elementItem;
+    //  this._elementItemPicture
   }
 
   _clickButtonLike(evt) {
@@ -44,19 +15,9 @@ export class Card {
     const buttonLike = evt.target;
     buttonLike.classList.toggle('elements__like-active');
   }
-  
-  _deleteCard(evt) {
-    const deleteButton = evt.target;
-    const elementItem = deleteButton.closest('.elements__item');
-    elementItem.remove();
-  }
 
-  _openPicture(title, image) {
-    const popUpPicture = this._popup;
-    popUpPicture.querySelector('.popup__image-picture').src = image;
-    popUpPicture.querySelector('.popup__image-title').textContent = title;
-    popUpPicture.querySelector('.popup__image-picture').alt = 'Изображение: ' + title;
-    this._openPopUp();
+  _deleteCard(element) {
+    element.remove();
   }
 
   _getTemplate() {
@@ -70,20 +31,21 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._elementItem.querySelector('.elements__picture').addEventListener('click', () => 
-        this._openPicture(this._title, this._image));
-    this._elementItem.querySelector('.elements__delete').addEventListener('click', this._deleteCard);
+    this._elementItemPicture.addEventListener('click', () => {
+        this._openPicture(this._name, this._link);
+    });
+    this._elementItem.querySelector('.elements__delete').addEventListener('click', () => {
+        this._deleteCard(this._elementItem);
+    });
     this._elementItem.querySelector('.elements__like').addEventListener('click', this._clickButtonLike);
-    this._popup.addEventListener('click', Card._handleCloseByClickOutside);
   }
 
-/* generate(){} = createCard(){} */
-  createCard() {
+  generate() {
     this._elementItem = this._getTemplate();
-    const picture = this._elementItem.querySelector('.elements__picture');
-    picture.src = this._image;
-    picture.alt = 'Изображение: ' + this._title;
-    this._elementItem.querySelector('.elements__title').textContent = this._title;
+    this._elementItemPicture = this._elementItem.querySelector('.elements__picture');
+    this._elementItemPicture.src = this._link;
+    this._elementItemPicture.alt = 'Изображение: ' + this._name;
+    this._elementItem.querySelector('.elements__title').textContent = this._name;
     this._setEventListeners();
   
     return this._elementItem;
