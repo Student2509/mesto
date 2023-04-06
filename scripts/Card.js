@@ -16,8 +16,12 @@ export class Card {
     buttonLike.classList.toggle('elements__like-active');
   }
 
-  _deleteCard(element) {
-    element.remove();
+  // _deleteCard(element) {
+  //   element.remove();
+  // }
+
+  _deleteCard() {
+    this._elementItem.remove();
   }
 
   _getTemplate() {
@@ -35,7 +39,8 @@ export class Card {
         this._openPicture(this._name, this._link);
     });
     this._elementItem.querySelector('.elements__delete').addEventListener('click', () => {
-        this._deleteCard(this._elementItem);
+        // this._deleteCard(this._elementItem);
+        this._deleteCard();
     });
     this._elementItem.querySelector('.elements__like').addEventListener('click', this._clickButtonLike);
   }

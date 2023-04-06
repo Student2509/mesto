@@ -95,7 +95,7 @@ popUpEdit.addEventListener('click', handleCloseByClickOutside);
 buttonEdit.addEventListener('click', () => {
   formEditNameInput.value = profileTitle.textContent;
   formEditJobInput.value = profileSubtitle.textContent;
-  editFormValidation.toggleButtonState([formEditNameInput, formEditJobInput], formEditButtonSubmit, formValidationSettings);
+  editFormValidation.toggleButtonState();
   openPopUp(popUpEdit);
 });
 formEdit.addEventListener('submit', handleSubmitEdit);
@@ -104,7 +104,7 @@ formEditButtonClose.addEventListener('click', () => {closePopUp(popUpEdit);});
 popUpAdd.addEventListener('click', handleCloseByClickOutside);
 buttonAdd.addEventListener('click', () => {
   formAdd.reset();
-  addFormValidation.toggleButtonState([formAddNameInput, formAddLinkInput], formAddButtonSubmit, formValidationSettings);
+  addFormValidation.toggleButtonState();
   openPopUp(popUpAdd);
 });
 formAdd.addEventListener('submit', handleSubmitAdd);
