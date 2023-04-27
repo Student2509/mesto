@@ -1,10 +1,10 @@
-export class Card {
+export default class Card {
 
-  constructor(card, templateSelector, openPicture) {
+  constructor(card, templateSelector, handleCardClick) {
     this._name = card.name;
     this._link = card.link;
     this._templateSelector = templateSelector;
-    this._openPicture = openPicture;
+    this._handleCardClick = handleCardClick;
     // ----- генерируются за пределами конструктора: -----
     //  this._elementItem;
     //  this._elementItemPicture
@@ -15,10 +15,6 @@ export class Card {
     const buttonLike = evt.target;
     buttonLike.classList.toggle('elements__like-active');
   }
-
-  // _deleteCard(element) {
-  //   element.remove();
-  // }
 
   _deleteCard() {
     this._elementItem.remove();
@@ -36,10 +32,9 @@ export class Card {
 
   _setEventListeners() {
     this._elementItemPicture.addEventListener('click', () => {
-        this._openPicture(this._name, this._link);
+        this._handleCardClick(this._name, this._link);
     });
     this._elementItem.querySelector('.elements__delete').addEventListener('click', () => {
-        // this._deleteCard(this._elementItem);
         this._deleteCard();
     });
     this._elementItem.querySelector('.elements__like').addEventListener('click', this._clickButtonLike);

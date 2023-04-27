@@ -6,7 +6,7 @@
   <meta name="description" content="Forth project of Yury Baranov / Yandex.Practicum">
   <meta name="keywords" content="html, css, adaptive, grid, figma, JavaScript">
   <meta name="author" content="Yury Baranov">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Место</title>
 </head>
 
@@ -15,13 +15,13 @@
   <div class="page">
 
     <header class="header">
-      <img class="header__logo" src="./images/header-logo.svg" alt="Логотип: Место - Россия">
+      <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Логотип: Место - Россия">
     </header>
 
     <main class="content">
       <section class="profile">
         <div class="profile__title-grid">
-          <img class="profile__avatar" src="./images/profile-cousteau.svg" alt="Изображение: Аватар">
+          <img class="profile__avatar" src="<%=require('./images/profile-cousteau.svg')%>" alt="Изображение: Аватар">
           <div class="profile__grid">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button class="profile__button-edit button" type="button" id="profilebuttonEdit" value="&#160;" aria-label="Редактировать"></button>
@@ -30,18 +30,7 @@
         </div>
         <button class="profile__button-add button" type="button" id="profilebuttonAdd" value="&#160;" aria-label="Добавить"></button>
       </section>
-      <section class="elements">
-        <template class="elements-template" id="elementsItem">
-          <div class="elements__item">
-            <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
-            <img class="elements__picture" src="./images/elements-karachaevsk.jpg" alt="Изображение">
-            <div class="elements__title-bar">
-              <h2 class="elements__title"></h2>
-              <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
-            </div>
-          </div>
-        </template>
-      </section>
+      <section class="elements"></section>
     </main>
 
     <footer class="footer">
@@ -51,14 +40,12 @@
     <div class="popup" id="popUpEdit">
       <div class="popup__container">
         <form class="popup__form form" name="edit-form" autocomplete="off" novalidate>
-          <!-- <fieldset class="form__set" id="editProfileFormSet"> -->
             <h3 class="popup__title">Редактировать профиль</h3>
             <input class="popup__edit-line popup__edit-line_field_name" id="name-input" required minlength="2" maxlength="40" type="text" name="name" value="&#160;">
             <span class="popup__edit-line-error name-input-error"></span>
             <input class="popup__edit-line popup__edit-line_field_description" id="description-input" required minlength="2" maxlength="200" type="text" name="description">
             <span class="popup__edit-line-error description-input-error"></span>
             <button class="popup__button-submit button" id="editFormButtonSave" type="submit" aria-label="Сохранить">Сохранить</button>
-          <!-- </fieldset> -->
         </form>
         <button class="popup__button-close button" id="editFormButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
       </div>
@@ -67,14 +54,12 @@
     <div class="popup" id="popUpAdd">
       <div class="popup__container">
         <form class="popup__form form" name="add-form" autocomplete="off" novalidate>
-          <!-- <fieldset class="form__set" id="addPictureFormSet"> -->
             <h3 class="popup__title">Новое место</h3>
             <input class="popup__edit-line popup__edit-line_field_name" id="picture-name-input" required minlength="2" maxlength="40" type="text" name="name" placeholder="Название">
             <span class="popup__edit-line-error picture-name-input-error"></span>
             <input class="popup__edit-line popup__edit-line_field_description" id="link-input" required type="url" name="description" placeholder="Ссылка на картинку">
             <span class="popup__edit-line-error link-input-error"></span>
             <button class="popup__button-submit button" id="addFormButtonSave" type="submit" value="&#160;" aria-label="Создать">Создать</button>
-          <!-- </fieldset> -->
         </form>
         <button class="popup__button-close button" id="addFormButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
       </div>
@@ -82,13 +67,24 @@
 
     <div class="popup popup_theme_dark" id="popUpPicture">
       <div class="popup__image">
-        <img class="popup__image-picture" src="images/elements-dombai.jpg" alt="">
+        <img class="popup__image-picture" src="<%=require('./images/elements-dombai.jpg')%>" alt="">
         <h4 class="popup__image-title"></h4>
         <button class="popup__button-close popup__image-close button" id="imageButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
       </div>
     </div>
 
+    <template class="elements__template" id="elementsItem">
+      <div class="elements__item">
+        <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
+        <img class="elements__picture" src="<%=require('./images/elements-karachaevsk.jpg')%>" alt="Изображение">
+        <div class="elements__title-bar">
+          <h2 class="elements__title"></h2>
+          <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
+        </div>
+      </div>
+    </template>
+
   </div>
-  <script type="module" src="scripts/index.js"></script>
+  <!-- <script type="module" src="pages/index.js"></script> -->
 </body>
 </html>

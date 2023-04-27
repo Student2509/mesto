@@ -1,3 +1,30 @@
+// ************************************************ VARIABLES / CONSTANTS ************************************************
+
+//                 *********** profile related ************
+
+export const buttonEdit = document.querySelector('.profile__button-edit');
+export const buttonAdd = document.querySelector('.profile__button-add'); 
+
+//                 *********** popup edit form related ************
+
+export const popUpEdit = document.querySelector('#popUpEdit');
+export const formEdit = popUpEdit.querySelector('.popup__form');
+export const formEditNameInput = popUpEdit.querySelector('.popup__edit-line_field_name');
+export const formEditJobInput = popUpEdit.querySelector('.popup__edit-line_field_description');
+
+//                 *********** popup add form related ************
+
+export const popUpAdd = document.querySelector('#popUpAdd');
+export const formAdd = popUpAdd.querySelector('.popup__form');
+
+//                 *********** popup picture related ************
+
+export const popUpPicture = document.querySelector('#popUpPicture');
+
+//                 *********** elements/cards related ************
+
+export const cardsContainerSelector = '.elements';
+
 export const initialCards = [
     {
       name: 'Архыз',
