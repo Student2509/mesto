@@ -100,12 +100,14 @@ popupForImage.setEventListeners();
 // ---------- Utils ----------
 
 function createCard(card) {
-  return (new Card({name: card.name, link: card.link}, '.elements__template', openPicture)).generate();
+  return (new Card(
+    {name: card.name, link: card.link}, 
+    '.elements__template', 
+    //popupForImage.open    /* не может найти метод open */
+    openPicture
+  )).generate();
 }
 
 function openPicture(title, image) {
-  popUpPicture.querySelector('.popup__image-picture').src = image;
-  popUpPicture.querySelector('.popup__image-title').textContent = title;
-  popUpPicture.querySelector('.popup__image-picture').alt = 'Изображение: ' + title;
   popupForImage.open(image, title);
 }
