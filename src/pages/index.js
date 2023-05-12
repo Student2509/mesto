@@ -3,14 +3,17 @@ import './index.css';
 import {
   buttonEdit,
   buttonAdd,
+  buttonEditAvatar,
   formEdit,
   formEditNameInput,
   formEditJobInput,
   formAdd,
-  popUpPicture,
+  formAvatar,
   cardsContainerSelector,
-  initialCards, 
-  formValidationSettings
+  formValidationSettings,
+  tokenNumber,
+  cohortNumber,
+  apiURL
   } from '../scripts/utils/constants.js';
 import Card from '../scripts/components/Card.js';
 import {FormValidation} from '../scripts/components/FormValidation.js';
@@ -18,22 +21,29 @@ import Section from '../scripts/components/Section.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import Api from '../scripts/components/Api';
 
 // ************************************ MAIN ************************************
+
+// ---------- API ----------
+
+const api = new Api(tokenNumber, cohortNumber, apiURL);
 
 // ---------- Validation ----------
 
 const editFormValidation = new FormValidation(formValidationSettings, formEdit);
 const addFormValidation = new FormValidation(formValidationSettings, formAdd);
+const avatarFormValidation = new FormValidation(formValidationSettings, formAvatar);
 
 editFormValidation.enableValidation();
 addFormValidation.enableValidation();
+avatarFormValidation.enableValidation();
 
 // ---------- Section ----------
 
 const section = new Section(
   {
-    items: initialCards.reverse(), 
+    //items: someInitCards.reverse(),    // items: initialCards.reverse(), 
     renderer: (card) => {
       const newCard = createCard(card);
       section.addItem(newCard);
@@ -42,14 +52,31 @@ const section = new Section(
   cardsContainerSelector
 );
 
-section.renderItems();
-
 // ---------- User Info / Profile ----------
 
 const profile = new UserInfo({
   nameSelector: '.profile__title', 
-  descriptionSelector: '.profile__subtitle'
+  descriptionSelector: '.profile__subtitle',
+  avatarSelector: '.profile__avatar'
 });
+
+// ---------- Initialization ----------
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then( (res) => {
+    const userData = res[0];
+    const initCards = res[1];
+
+    profile.setUserInfo ({
+      name: userData.name,
+      description: userData.about,
+      avatar: userData.avatar
+    });
+    profile.id = userData._id;
+    // console.log(initCards);
+    section.renderItems(initCards);
+  })
+  .catch(err => console.log(`Ошибка: ${err}`))
 
 // ---------- Popup: edit profile ----------
 
@@ -57,8 +84,15 @@ const popupForProfile = new PopupWithForm(
   '#popUpEdit', 
   (evt, inputValues) => {
     evt.preventDefault();
-    profile.setUserInfo({name: inputValues.name, description: inputValues.description});
-    popupForProfile.close();
+    popupForProfile.toggleAwaitingState();
+    api.editProfileInfo({name: inputValues.name, about: inputValues.description})
+      .then( (data) => {
+        console.log(data);
+        profile.setUserInfo({name: data.name, description: data.about, avatar: data.avatar}); 
+        popupForProfile.close();
+      })
+      .catch( err => console.log(`Ошибка: ${err}`))
+      .finally(popupForProfile.toggleAwaitingState())
   }
 );
 
@@ -78,9 +112,17 @@ const popupForAddingCard = new PopupWithForm(
   '#popUpAdd', 
   (evt, inputValues) => {
     evt.preventDefault();
-    const newElement = createCard({name: inputValues.name, link: inputValues.description});
-    section.addItem(newElement); 
-    popupForAddingCard.close();
+    popupForAddingCard.toggleAwaitingState();
+    api.addCard({newName: inputValues.name, newLink: inputValues.description})
+      .then( data => {
+        // console.log(data);
+        // const newElement = createCard({name: data.name, link: data.link});
+        const newElement = createCard(data);
+        section.addItem(newElement);
+        popupForAddingCard.close();
+      })
+      .catch( err => console.log(`Ошибка: ${err}`))
+      .finally(popupForAddingCard.toggleAwaitingState())    
   }
 );
 
@@ -97,15 +139,70 @@ const popupForImage = new PopupWithImage('#popUpPicture');
 
 popupForImage.setEventListeners();
 
+// ---------- Popup: delete card ----------
+
+const popupForDeletingCard = new PopupWithForm(
+  '#popUpDelete',
+  (evt) => {
+    evt.preventDefault();
+  }
+);
+
+// ---------- Popup: changing avatar ----------
+
+const popupForChangingAvatar = new PopupWithForm(
+  '#popUpAvatar',
+  (evt, userInfo) => {
+    evt.preventDefault();
+    console.log(`UserInfo from popupForChangingAvatar: ${userInfo}`);
+    popupForChangingAvatar.toggleAwaitingState();
+    api.setUserAvatar({
+      avatar: userInfo.avatar
+    })
+      .then((data) => {
+        profile.setUserInfo({
+          name: data.name,
+          description: data.about,
+          avatar: data.avatar
+        });
+        popupForChangingAvatar.close();
+      })
+      .catch( err => console.log(`Ошибка: ${err}`))
+      .finally(popupForChangingAvatar.toggleAwaitingState())
+  }
+);
+
+popupForChangingAvatar.setEventListeners();
+
+buttonEditAvatar.addEventListener('click', () => {
+  popupForChangingAvatar.open();
+})
+
 // ---------- Utils ----------
 
 function createCard(card) {
-  return (new Card(
-    {name: card.name, link: card.link}, 
+  const newCard = (new Card(
+    card,
     '.elements__template', 
     //popupForImage.open    /* не может найти метод open */
-    openPicture
-  )).generate();
+    openPicture,
+    api.likeCard.bind(api), //  передаём чем отправляем запрос на "лайк" на сервер
+    api.deleteCard.bind(api), //  передаём чем отправляем запрос на "удалить" на сервер
+    popupForDeletingCard.open.bind(popupForDeletingCard), //  передаём чем открываем попап
+    popupForDeletingCard.close.bind(popupForDeletingCard), //  передаём чем закрываем попап
+    popupForDeletingCard.setEventListeners.bind(popupForDeletingCard) //  передаём чем и как обрабатываем сабмит (нажатие "ОК")
+  ));
+  const newCardElement = newCard.generate();
+
+  if (card.owner._id === profile.id) {
+    newCard.enableDeleteButton();
+  }
+
+  if (card.likes.some((card) => {card._id === profile.id})) {
+    newCard.showActiveLikes();
+  }
+
+  return newCardElement;
 }
 
 function openPicture(title, image) {

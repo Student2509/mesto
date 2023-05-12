@@ -21,7 +21,12 @@
     <main class="content">
       <section class="profile">
         <div class="profile__title-grid">
-          <img class="profile__avatar" src="<%=require('./images/profile-cousteau.svg')%>" alt="Изображение: Аватар">
+          <div class="profile__avatar-grid">
+            <img class="profile__avatar" src="<%=require('./images/profile-cousteau.svg')%>" alt="Изображение: Аватар">
+            <button class="profile__change-avatar"></button>
+          </div>
+          <!-- <img class="profile__avatar" src="<%=require('./images/profile-cousteau.svg')%>" alt="Изображение: Аватар">
+          <button class="profile__change-avatar"></button> -->
           <div class="profile__grid">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button class="profile__button-edit button" type="button" id="profilebuttonEdit" value="&#160;" aria-label="Редактировать"></button>
@@ -67,19 +72,46 @@
 
     <div class="popup popup_theme_dark" id="popUpPicture">
       <div class="popup__image">
-        <img class="popup__image-picture" src="<%=require('./images/elements-dombai.jpg')%>" alt="">
+        <img class="popup__image-picture" src="<%=require('./images/elements-dombai.jpg')%>" alt="Изображение: ">
         <h4 class="popup__image-title"></h4>
         <button class="popup__button-close popup__image-close button" id="imageButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
       </div>
     </div>
 
+    <div class="popup popup_type_delete" id="popUpDelete">
+      <div class="popup__container">
+        <form class="popup__form form" name="delete-form" autocomplete="off" novalidate>
+          <h3 class="popup__title">Вы уверены?</h3>
+          <button class="popup__button-submit button" id="deleteFormButtonSave" type="submit" value="&#160;" aria-label="Да">Да</button>
+        </form>
+        <button class="popup__button-close button" id="deleteFormButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_type_avatar" id="popUpAvatar">
+      <div class="popup__container">
+        <form class="popup__form form" name="avatar-form" autocomplete="off" novalidate>
+          <h3 class="popup__title">Обновить аватар</h3>
+          <input class="popup__edit-line popup__edit-line_field_name" id="link-input" required type="url" name="avatar" placeholder="Ссылка на картинку">
+          <span class="popup__edit-line-error link-input-error"></span>
+          <button class="popup__button-submit button" id="avatarFormButtonSave" type="submit" value="&#160;" aria-label="Да">Сохранить</button>
+        </form>
+        <button class="popup__button-close button" id="avatarFormButtonClose" type="button" value="&#160;" aria-label="Закрыть"></button>
+      </div>
+    </div>
+
     <template class="elements__template" id="elementsItem">
       <div class="elements__item">
-        <button class="elements__delete button" type="button" value="&#160;" aria-label="Удалить"></button>
+        <button class="elements__delete elements__delete_disabled button" type="button" value="&#160;" aria-label="Удалить"></button>
         <img class="elements__picture" src="<%=require('./images/elements-karachaevsk.jpg')%>" alt="Изображение">
         <div class="elements__title-bar">
           <h2 class="elements__title"></h2>
-          <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
+          <div>
+            <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
+            <p class="elements__like-count">0</p>  
+          </div>
+          <!-- <button class="elements__like button" type="button" value="&#160;" aria-label="Лайк"></button>
+          <p class="elements__like-count">0</p> -->
         </div>
       </div>
     </template>

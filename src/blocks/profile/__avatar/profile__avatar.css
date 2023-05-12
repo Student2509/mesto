@@ -1,10 +1,17 @@
 .profile__avatar {
-  min-width: 120px;
+  width: 120px;
+  height: 120px;
   margin: 0;
+  object-fit: cover;
+  object-position: center;
   box-sizing: border-box;
   border-radius: 50%;
   overflow: hidden;
 }
+
+/* .profile__avatar:hover {
+  background-color: rgba(0, 0, 0, .8);
+} */
 
 @media screen and (max-width:980px) {
   .profile__avatar {

@@ -1,0 +1,17 @@
+.profile__avatar-grid {
+    position: relative;
+    max-width: 120px;
+}
+
+@media screen and (max-width:980px) {
+    .profile__avatar-grid {
+      max-width: 100px;
+    }
+  }
+  
+  @media screen and (max-width:641px) {
+    .profile__avatar-grid {
+      max-width: 120px;
+      align-self: center;
+    }
+  }
