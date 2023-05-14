@@ -3,95 +3,53 @@ export default class Card {
   constructor({card, templateSelector, 
     handleClick,
     handleDelete,
-    handleLike
-    // clickLike, 
-    // clickDelete, 
-    // openCardPopup, 
-    // closeCardPopup, 
-    // pressConfirm
-    /*,
-  isOwner*/}) {
+    handleLike,
+    userId
+    }) {
     this._card = card;
     this._templateSelector = templateSelector;
     this._handleClick = handleClick;
     this._handleDelete = handleDelete;
     this._handleLike = handleLike;
-    this._ownerId = '';
-    // this._clickLike = clickLike;
-    // this._clickDelete = clickDelete;
-    // this._openCardPopup = openCardPopup;
-    // this._closeCardPopup = closeCardPopup;
-    // this._pressConfirm = pressConfirm;
-    // this._isOwner = isOwner;
+    this._userId = userId;
     // ----- генерируются за пределами конструктора: -----
     //  this._elementItem;
     //  this._elementItemPicture
-    //  this._likes
+    //  this.likesElement
+    //  this._isLike
   }
 
-  // _clickButtonLike(evt) {
-  //   evt.preventDefault();
-  //   const buttonLike = evt.target;
-  //   buttonLike.classList.toggle('elements__like-active');
-  // }
-
-  // _handleCardDelete(evt) {
-  //   // console.log('entering _handleCardDelete of Card');
-  //   this._clickDelete(this._card._id)
-  //     .then(npc => {
-  //       evt.target.closest('.elements__item').remove();
-  //       this._closeCardPopup();
-  //     })
-  //     .catch(err => console.log(`Ошибка: ${err}`))
-  // }
-
-  // deleteCard(evt) {
-  //   evt.target.closest('.elements__item').remove();
-  // }
-
-  // _handleCardLike(evt) {
-  //   const isLiked = evt.target.classList.contains('elements__like-active');
-  //   this._clickLike(this._card._id, isLiked)
-  //     .then((card) => {
-  //       let result = 0;
-  //       if (card.likes) {
-  //         result = card.likes.length;
-  //       } else {
-  //         result = 0;
-  //       }
-  //       this._likesElement.textContent = result;
-  //       evt.target.classList.toggle('elements__like-active');
-  //     })
-  //     .catch(err => console.log(`Ошибка: ${err}`))
-  // }
-
-  _enableDeleteButton() {
-    this._elementItem.querySelector('.elements__delete').classList.remove('elements__delete_disabled');
+  deleteCard() {
+    this._elementItem.remove();
   }
 
-  _showActiveLikes() {
-    const likeButton = this._elementItem.querySelector('.elements__like');
-    if (!likeButton.classList.contains('elements__like-active')) {
-      likeButton.classList.add('elements__like-active');
+  _setDeleteButtonStatus() {
+    if (this._card.owner._id === this._userId) {
+      this._elementItem.querySelector('.elements__delete').classList.remove('elements__delete_disabled');
     }
   }
 
-  setOwnerId(userId) {
-    this._ownerId = userId;
+  _checkOwnLikes() {
+    this._toggleLikeStatus(this._hasOwnLike());
   }
 
-  _checkOwner() {
-    if (this._card.owner._id === this._ownerId) {
-      this._enableDeleteButton();
-    }
-  
-    if (this._card.likes.some((card) => {card._id === this._ownerId})) {
-      this._showActiveLikes();
+  _toggleLikeStatus(isLiked) {
+    if (isLiked) {
+      this._likeButton.classList.add('elements__like-active');
+    } else {
+      this._likeButton.classList.remove('elements__like-active');
     }
   }
 
-  setLikes(likes) {
-    this._likesElement.textContent = likes;
+  _hasOwnLike() {
+    this._isLiked = this._card.likes.some((user) => {return user._id === this._userId})
+    return this._isLiked;
+  }  
+
+  setLikes(likes) { // принимаем массив пользователей card.likes
+    this._card.likes = likes;
+    this._likesElement.textContent = likes.length;
+    this._checkOwnLikes();
   }
 
   _getTemplate() {
@@ -108,26 +66,26 @@ export default class Card {
     this._elementItemPicture.addEventListener('click', () => {
         this._handleClick(this._card.name, this._card.link);
     });
-    this._elementItem.querySelector('.elements__like').addEventListener('click', (evt) => {
-      this._handleLike(evt, this);
+    this._elementItem.querySelector('.elements__like').addEventListener('click', () => {
+      this._handleLike(this._isLiked, this);
     });
-    this._elementItem.querySelector('.elements__delete').addEventListener('click', (evt) => {
-      this._handleDelete(evt, this._card._id);
-      // console.log('Card._setEventListeners', this);
+    this._elementItem.querySelector('.elements__delete').addEventListener('click', () => {
+      this._handleDelete(this._card._id, this);
     });
   }
 
   generate() {
-    // console.log('enter generate');
     this._elementItem = this._getTemplate();
     this._elementItemPicture = this._elementItem.querySelector('.elements__picture');
     this._elementItemPicture.src = this._card.link;
     this._elementItemPicture.alt = 'Изображение: ' + this._card.name;
     this._elementItem.querySelector('.elements__title').textContent = this._card.name;
+    this._likeButton = this._elementItem.querySelector('.elements__like');
     this._likesElement = this._elementItem.querySelector('.elements__like-count');
     this._likesElement.textContent = this._card.likes ? this._card.likes.length : 0;
-    this._checkOwner(); // если метод setOwnerId не вызывался до generate, то проверка просто пропустится в теле _checkOwner
-                        // и карточка автоматически будет отрисована как карточка другого пользователя
+    this._isLiked = this._hasOwnLike();
+    this._setDeleteButtonStatus();
+    this._checkOwnLikes();
     this._setEventListeners();
   
     return this._elementItem;

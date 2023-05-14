@@ -24,19 +24,17 @@ export default class PopupWithConfirmation extends Popup {
         this._buttonSubmitAwaitingText = 'Удаление...';
     }
 
-    close() {
-        super.close();
-        this._popupForm.reset();
-    }
-
-    getForm() {
-        return this._popupForm;
+    open(cardId, cardElement) {
+        super.open();
+        this._cardId = cardId;
+        this._cardElement = cardElement;
     }
 
     setEventListeners() {
         super.setEventListeners();
         this._popupForm.addEventListener('submit', (evt) => {
-            this._handleFormSubmit(evt);
+            evt.preventDefault();
+            this._handleFormSubmit(this._cardId, this._cardElement);
         });
     }
 
@@ -45,13 +43,5 @@ export default class PopupWithConfirmation extends Popup {
         ? this._buttonSubmit.textContent = this._buttonSubmitDefaultTitle
         : this._buttonSubmit.textContent = this._buttonSubmitAwaitingText;
     }
-
-    // setAwaitingState() {
-    //     this._buttonSubmit.textContent = this._buttonSubmitAwaitingText;
-    // }
-
-    // setDefaultState() {
-    //     this._buttonSubmit.textContent = this._buttonSubmitDefaultTitle;
-    // }
 
 }

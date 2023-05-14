@@ -87,18 +87,13 @@ const popupForProfile = new PopupWithForm(
     popupForProfile.toggleAwaitingState();
     api.editProfileInfo({name: inputValues.name, about: inputValues.description})
       .then( (data) => {
-        // console.log(data);
         profile.setUserInfo({name: data.name, description: data.about, avatar: data.avatar}); 
         popupForProfile.close();
       })
       .catch( err => console.log(`Ошибка: ${err}`))
-      // .finally(popupForProfile.toggleAwaitingState());
       .finally(() => {
         popupForProfile.toggleAwaitingState();
       });
-      // .finally(setTimeout(() => {popupForProfile.toggleAwaitingState()}, 500));
-      // finally срабатыыает быстро. Если этот блок убрать, 
-      // или поставить таймер, то изменение статуса кнопки будет заметно
   }
 );
 
@@ -145,17 +140,6 @@ const popupForImage = new PopupWithImage('#popUpPicture');
 
 popupForImage.setEventListeners();
 
-// ---------- Popup: delete card ----------
-
-const popupForDeletingCard = new PopupWithConfirmation(
-  '#popUpDelete',
-  (evt) => {
-    evt.preventDefault();
-  }
-);
-
-popupForDeletingCard.setEventListeners();
-
 // ---------- Popup: changing avatar ----------
 
 const popupForChangingAvatar = new PopupWithForm(
@@ -188,6 +172,24 @@ buttonEditAvatar.addEventListener('click', () => {
   popupForChangingAvatar.open();
 })
 
+// ---------- Popup: delete card ----------
+
+const popupForDeletingCard = new PopupWithConfirmation(
+  '#popUpDelete',
+  (cardId, cardElement) => {
+    popupForDeletingCard.toggleAwaitingState();
+    api.deleteCard(cardId)
+      .then( () => {
+        cardElement.deleteCard();
+        popupForDeletingCard.close();
+      })
+    .catch(err => console.log(`Ошибка: ${err}`))
+    .finally(() => {
+      popupForDeletingCard.toggleAwaitingState();
+    })
+  }
+);
+
 // ---------- Utils ----------
 
 function createCard(card) {
@@ -196,62 +198,23 @@ function createCard(card) {
     {card: card,
     templateSelector: '.elements__template',
     handleClick: openPicture,
-    handleDelete: handleDel,
-    handleLike: (evt, likes) => {
-      const isLiked = evt.target.classList.contains('elements__like-active');
+    handleDelete: (cardId, cardElement) => {
+      popupForDeletingCard.open(cardId, cardElement);
+      popupForDeletingCard.setEventListeners();
+    },
+    handleLike: (isLiked, cardElement) => {
       api.likeCard(card._id, isLiked)
-        .then((card) => {
-          let result = 0;
-          if (card.likes) {
-            result = card.likes.length;
-          } else {
-            result = 0;
-          }
-          console.log(likes);
-          likes.setLikes(result);
-          evt.target.classList.toggle('elements__like-active');
+        .then((returnedCard) => {
+          cardElement.setLikes(returnedCard.likes);
         })
         .catch(err => console.log(`Ошибка: ${err}`))
-    }
+    },
+    userId: profile.getUserId()
   });
 
-  newCard.setOwnerId(profile.getUserId());
   return newCard.generate();
 }
 
 function openPicture(title, image) {
   popupForImage.open(image, title);
-}
-
-// топорно, но лучше не придумал...
-let currentCard = {
-  id: '',
-  evt: '',
-  form: ''
-}
-
-// !!!!!!!!! handleDel одна для всех! Не дублируется в отдельную функцию в каждом экземпляре класса Card
-const handleDel = (evt, cardId) => {
-  currentCard.id = cardId;
-  currentCard.evt = evt;
-  evt.preventDefault();
-  popupForDeletingCard.open();
-  const form = popupForDeletingCard.getForm();
-  currentCard.form = form;
-  form.removeEventListener('submit', removeCard); // чтобы не плодить слушатели
-  form.addEventListener('submit', removeCard);
-}
-
-const removeCard = () => {
-  popupForDeletingCard.toggleAwaitingState();
-  api.deleteCard(currentCard.id)
-    .then( () => {
-      currentCard.evt.target.closest('.elements__item').remove();
-      popupForDeletingCard.close();
-      currentCard.form.removeEventListener('submit', removeCard);
-    })
-    .catch(err => console.log(`Ошибка: ${err}`))
-    .finally(() => {
-      popupForDeletingCard.toggleAwaitingState();
-    })
 }
