@@ -87,13 +87,18 @@ const popupForProfile = new PopupWithForm(
     popupForProfile.toggleAwaitingState();
     api.editProfileInfo({name: inputValues.name, about: inputValues.description})
       .then( (data) => {
-        console.log(data);
+        // console.log(data);
         profile.setUserInfo({name: data.name, description: data.about, avatar: data.avatar}); 
         popupForProfile.close();
       })
       .catch( err => console.log(`Ошибка: ${err}`))
-      .finally(popupForProfile.toggleAwaitingState());  // finally срабатыыает быстро. Если этот блок убрать, 
-                                                        // то изменение статуса кнопки будет заметно
+      // .finally(popupForProfile.toggleAwaitingState());
+      .finally(() => {
+        popupForProfile.toggleAwaitingState();
+      });
+      // .finally(setTimeout(() => {popupForProfile.toggleAwaitingState()}, 500));
+      // finally срабатыыает быстро. Если этот блок убрать, 
+      // или поставить таймер, то изменение статуса кнопки будет заметно
   }
 );
 
@@ -121,8 +126,9 @@ const popupForAddingCard = new PopupWithForm(
         popupForAddingCard.close();
       })
       .catch( err => console.log(`Ошибка: ${err}`))
-      .finally(popupForAddingCard.toggleAwaitingState());
-      // .finally(setTimeout(popupForAddingCard.toggleAwaitingState, 1000))
+      .finally( () => {
+        popupForAddingCard.toggleAwaitingState();
+      });
   }
 );
 
@@ -170,7 +176,9 @@ const popupForChangingAvatar = new PopupWithForm(
         formAvatarValidation.toggleButtonState();
       })
       .catch( err => console.log(`Ошибка: ${err}`))
-      .finally(popupForChangingAvatar.toggleAwaitingState())
+      .finally(() => {
+        popupForChangingAvatar.toggleAwaitingState();
+      })
   }
 );
 
@@ -188,31 +196,7 @@ function createCard(card) {
     {card: card,
     templateSelector: '.elements__template',
     handleClick: openPicture,
-    handleDelete: 
-
-    (evt) => {
-      //console.log('step 1');
-      evt.preventDefault();
-      const removeCard = () => {
-        //console.log('step 2');
-        popupForDeletingCard.toggleAwaitingState();
-            api.deleteCard(card._id)
-              .then( () => {
-                //console.log('step 3');
-                evt.target.closest('.elements__item').remove();
-                popupForDeletingCard.close();
-                form.removeEventListener('submit', removeCard);
-              })
-              .catch(err => console.log(`Ошибка: ${err}`))
-              .finally(popupForDeletingCard.toggleAwaitingState())
-      }
-      //console.log('step 4');
-      popupForDeletingCard.open();
-      const form = popupForDeletingCard.getForm();
-      form.removeEventListener('submit', removeCard); // чтобы не плодить слушатели
-      form.addEventListener('submit', removeCard);
-    },
-
+    handleDelete: handleDel,
     handleLike: (evt, likes) => {
       const isLiked = evt.target.classList.contains('elements__like-active');
       api.likeCard(card._id, isLiked)
@@ -239,25 +223,35 @@ function openPicture(title, image) {
   popupForImage.open(image, title);
 }
 
-// const handleDel = (evt, cardId) => {
-////   console.log('step 1');
-//   evt.preventDefault();
-//   const removeCard = () => {
-////     console.log('step 2');
-//     popupForDeletingCard.setAwaitingState();
-//         api.deleteCard(cardId)
-//           .then( () => {
-////             console.log('step 3');
-//             evt.target.closest('.elements__item').remove();
-//             popupForDeletingCard.close();
-//             form.removeEventListener('submit', removeCard);
-//           })
-//           .catch(err => console.log(`Ошибка: ${err}`))
-//           .finally(popupForDeletingCard.setDefaultState())
-//   }
-////   console.log('step 4');
-//   popupForDeletingCard.open();
-//   const form = popupForDeletingCard.getForm();
-//   form.removeEventListener('submit', removeCard); // чтобы не плодить слушатели
-//   form.addEventListener('submit', removeCard);
-// }
+// топорно, но лучше не придумал...
+let currentCard = {
+  id: '',
+  evt: '',
+  form: ''
+}
+
+// !!!!!!!!! handleDel одна для всех! Не дублируется в отдельную функцию в каждом экземпляре класса Card
+const handleDel = (evt, cardId) => {
+  currentCard.id = cardId;
+  currentCard.evt = evt;
+  evt.preventDefault();
+  popupForDeletingCard.open();
+  const form = popupForDeletingCard.getForm();
+  currentCard.form = form;
+  form.removeEventListener('submit', removeCard); // чтобы не плодить слушатели
+  form.addEventListener('submit', removeCard);
+}
+
+const removeCard = () => {
+  popupForDeletingCard.toggleAwaitingState();
+  api.deleteCard(currentCard.id)
+    .then( () => {
+      currentCard.evt.target.closest('.elements__item').remove();
+      popupForDeletingCard.close();
+      currentCard.form.removeEventListener('submit', removeCard);
+    })
+    .catch(err => console.log(`Ошибка: ${err}`))
+    .finally(() => {
+      popupForDeletingCard.toggleAwaitingState();
+    })
+}

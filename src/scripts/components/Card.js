@@ -113,7 +113,7 @@ export default class Card {
     });
     this._elementItem.querySelector('.elements__delete').addEventListener('click', (evt) => {
       this._handleDelete(evt, this._card._id);
-      console.log(this);
+      // console.log('Card._setEventListeners', this);
     });
   }
 

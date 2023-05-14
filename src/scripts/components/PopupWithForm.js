@@ -48,8 +48,9 @@ export default class PopupWithForm extends Popup {
     }
 
     toggleAwaitingState() {
-        console.log('entering toggleAwaiting PoPuWForm');
+        // console.log('entering toggleAwaiting PoPuWForm');
         // console.log(this._popup);
+        const income = this._buttonSubmit.textContent;
         let buttonAwaitingText = '';
         switch (this._buttonSubmitDefaultTitle) {
             case 'Сохранить':
@@ -64,11 +65,10 @@ export default class PopupWithForm extends Popup {
             default:
                 buttonAwaitingText = 'Выполнение...';
         }
-        // console.log(buttonAwaitingText);
         this._buttonSubmit.textContent.includes('...') 
         ? this._buttonSubmit.textContent = this._buttonSubmitDefaultTitle
         : this._buttonSubmit.textContent = buttonAwaitingText;
-        console.log(this._buttonSubmit.textContent);
+        console.log(`changing from ${income} to ${this._buttonSubmit.textContent}`);
     }
 
 }

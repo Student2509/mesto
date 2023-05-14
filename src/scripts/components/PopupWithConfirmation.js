@@ -44,15 +44,14 @@ export default class PopupWithConfirmation extends Popup {
         this._buttonSubmit.textContent.includes('...') 
         ? this._buttonSubmit.textContent = this._buttonSubmitDefaultTitle
         : this._buttonSubmit.textContent = this._buttonSubmitAwaitingText;
-        console.log(this._buttonSubmit.textContent);
     }
 
-    setAwaitingState() {
-        this._buttonSubmit.textContent = this._buttonSubmitAwaitingText;
-    }
+    // setAwaitingState() {
+    //     this._buttonSubmit.textContent = this._buttonSubmitAwaitingText;
+    // }
 
-    setDefaultState() {
-        this._buttonSubmit.textContent = this._buttonSubmitDefaultTitle;
-    }
+    // setDefaultState() {
+    //     this._buttonSubmit.textContent = this._buttonSubmitDefaultTitle;
+    // }
 
 }
