@@ -72,7 +72,7 @@ export default class Api {
     }
 
     deleteCard(cardId) {
-        // console.log('entering deleteCard of Api');
+        console.log('entering deleteCard of Api');
         return fetch(`${this._fullApiUrl}/cards/${cardId}`, {
             method: 'DELETE', 
             headers: this._headers,

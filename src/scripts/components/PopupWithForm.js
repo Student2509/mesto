@@ -7,7 +7,6 @@ export default class PopupWithForm extends Popup {
     // this._handleFormSubmit    /* constructor */
     // this._popupForm           /* constructor */
     // this._buttonSubmit        /* constructor */
-    // this._buttonSubmitTitle   /* constructor */
     // this._inputList           /* _getInputValues */
     // this._formValues          /* _getInputValues */
 
@@ -16,6 +15,7 @@ export default class PopupWithForm extends Popup {
         this._handleFormSubmit = handleFormSubmit;
         this._popupForm = this._popup.querySelector('.popup__form');
         this._buttonSubmit = this._popupForm.querySelector('.popup__button-submit');
+        this._inputList = this._popupForm.querySelectorAll('.popup__edit-line');
         this._buttonSubmitDefaultTitle = this._buttonSubmit.textContent;
     }
 
@@ -25,7 +25,7 @@ export default class PopupWithForm extends Popup {
     }
 
     _getInputValues() {
-        this._inputList = this._popup.querySelectorAll('.popup__edit-line');
+        // this._inputList = this._popup.querySelectorAll('.popup__edit-line');
         this._formValues = {};
         this._inputList.forEach(input => {
           this._formValues[input.name] = input.value;
@@ -33,23 +33,30 @@ export default class PopupWithForm extends Popup {
         return this._formValues;
     }
 
-    setEventListeners(someFunction) {
+    // setEventListeners(someFunction) {
+    //     super.setEventListeners();
+    //     if (typeof someFunction === 'function') {
+    //         this._popupForm.addEventListener('submit', someFunction);
+    //     } else {
+    //         this._popupForm.addEventListener('submit', (evt) => {this._handleFormSubmit(evt, this._getInputValues());});   
+    //     }
+    // }
+
+    setEventListeners() {
         super.setEventListeners();
-        if (typeof someFunction === 'function') {
-            this._popupForm.addEventListener('submit', someFunction);
-        } else {
-            this._popupForm.addEventListener('submit', (evt) => {this._handleFormSubmit(evt, this._getInputValues());});   
-        }
+        this._popupForm.addEventListener('submit', (evt) => {this._handleFormSubmit(evt, this._getInputValues());});
     }
 
     toggleAwaitingState() {
+        console.log('entering toggleAwaiting PoPuWForm');
+        // console.log(this._popup);
         let buttonAwaitingText = '';
         switch (this._buttonSubmitDefaultTitle) {
-            case 'Cохранить':
-                buttonAwaitingText = 'Cохранение...';
+            case 'Сохранить':
+                buttonAwaitingText = 'Сохранение...';
                 break;
-            case 'Cоздать': 
-                buttonAwaitingText = 'Cоздание...';
+            case 'Создать': 
+                buttonAwaitingText = 'Создание...';
                 break;
             case 'Да': 
                 buttonAwaitingText = 'Удаление...';
@@ -57,9 +64,11 @@ export default class PopupWithForm extends Popup {
             default:
                 buttonAwaitingText = 'Выполнение...';
         }
+        // console.log(buttonAwaitingText);
         this._buttonSubmit.textContent.includes('...') 
         ? this._buttonSubmit.textContent = this._buttonSubmitDefaultTitle
         : this._buttonSubmit.textContent = buttonAwaitingText;
+        console.log(this._buttonSubmit.textContent);
     }
 
 }
